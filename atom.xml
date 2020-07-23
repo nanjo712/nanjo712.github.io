@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://nanjo712.github.io</id>
     <title>WSR的安全屋</title>
-    <updated>2020-07-23T13:47:26.988Z</updated>
+    <updated>2020-07-23T13:48:16.619Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://nanjo712.github.io"/>
     <link rel="self" href="https://nanjo712.github.io/atom.xml"/>
@@ -171,8 +171,7 @@ int main()
         <link href="https://nanjo712.github.io/hZlomU2zV/">
         </link>
         <updated>2020-07-23T13:16:06.000Z</updated>
-        <content type="html"><![CDATA[<p>[toc]</p>
-<h3 id="整除">整除</h3>
+        <content type="html"><![CDATA[<h3 id="整除">整除</h3>
 <p>当<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mo>=</mo><mi>b</mi><mi>k</mi></mrow><annotation encoding="application/x-tex">a=bk</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">a</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">b</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span>,且<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mo separator="true">,</mo><mi>b</mi><mo separator="true">,</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">a,b,k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">b</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span>均为整数时，称为b整除a，记为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>b</mi><mi mathvariant="normal">∣</mi><mi>a</mi></mrow><annotation encoding="application/x-tex">b|a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">b</span><span class="mord">∣</span><span class="mord mathdefault">a</span></span></span></span></p>
 <p><strong>b为除数，a为被除数</strong>。</p>
 <h3 id="质数与合数">质数与合数</h3>
