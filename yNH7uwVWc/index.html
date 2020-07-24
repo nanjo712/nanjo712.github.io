@@ -9,7 +9,7 @@
 <meta name="description" content="ZWL AK IOI">
 <meta name="theme-color" content="#000">
 <title>WSR的安全屋</title>
-<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/nanjo712/nanjo712.github.io@master/favicon.ico?v=1595512783744">
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/nanjo712/nanjo712.github.io@master/favicon.ico?v=1595549307884">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nanjo712/nanjo712.github.io@master/media/css/pisces.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nanjo712/nanjo712.github.io@master/media/fonts/font-awesome.css">
 <link
@@ -207,7 +207,7 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">5</span>
+        <span class="site-item-stat-count">6</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
@@ -258,6 +258,8 @@
           <small class="language" data-lan="tag">标签</small>
         </h2>
       </div>
+      
+      
       
       
       
@@ -506,6 +508,129 @@
       <hr>
     </div>
     <div class="result" id="result">
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://nanjo712.github.io/dYCjdEkAP/"" data-c="
+          &lt;h2 id=&#34;引入&#34;&gt;引入&lt;/h2&gt;
+&lt;p&gt;对于静态区间第k小的问题，我们都知道可以用主席树解决。&lt;br&gt;
+如果是带上修改操作呢？主席树并不能解决这个问题，一般的解法有树套树、KD-Tree和整体二分等。&lt;br&gt;
+这篇博客选择使用整体二分来解决这个问题。&lt;/p&gt;
+&lt;h2 id=&#34;什么是整体二分应该怎么做&#34;&gt;什么是整体二分？应该怎么做？&lt;/h2&gt;
+&lt;p&gt;假定现在只有一个询问，用二分的做法。&lt;br&gt;
+考虑对值域进行二分，在区间中标记出现在&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;m&lt;/mi&gt;&lt;mi&gt;i&lt;/mi&gt;&lt;mi&gt;d&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;mid&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.69444em;vertical-align:0em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;m&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;d&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;左边的数，统计这个区间被标记的数的个数，如果个数&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;mo&gt;≤&lt;/mo&gt;&lt;mi&gt;k&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;s\leq k&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.7719400000000001em;vertical-align:-0.13597em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2777777777777778em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mrel&#34;&gt;≤&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2777777777777778em;&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.69444em;vertical-align:0em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34; style=&#34;margin-right:0.03148em;&#34;&gt;k&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;，则说明所需的答案并不在&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;m&lt;/mi&gt;&lt;mi&gt;i&lt;/mi&gt;&lt;mi&gt;d&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;mid&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.69444em;vertical-align:0em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;m&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;d&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;的左半边，而在右半边，反之则说明在左半边，此时递归地处理即可，当值域只有一个数时，该数即为答案。&lt;br&gt;
+打标记需要利用数据结构，技术上只需要支持单点修改和区间查询即可。一般使用树状数组。&lt;br&gt;
+那么当询问变多的时候呢？难道我们要每次重新打标记，每次重新二分吗？&lt;br&gt;
+当然不，我们可以整体二分，也就是处理所有的询问。&lt;br&gt;
+那么我们只要按照上面的思路，对所有询问同时进行处理即可。&lt;br&gt;
+具体怎么做呢？我们可以每次都暴力扫一遍来打标记，但是这样复杂度可能会炸。&lt;br&gt;
+我们考虑一个整体二分的特性，我们在递归时的每一个区间内部，保持了询问的相对顺序，按照询问的顺序来确定左右区间（当然也可以不按顺序，但是一般人都是按顺序的吧……没人闲的没事干专门去改个顺序）。考虑到上一个做法复杂度爆炸的原因是因为我把与当前要查询的所有区间无关的数也打上了标记，这次我们只打相关的数标记即可。&lt;br&gt;
+具体做法就是引入一个加入操作，把最初的赋值操作视为加入，如果在&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;m&lt;/mi&gt;&lt;mi&gt;i&lt;/mi&gt;&lt;mi&gt;d&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;mid&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.69444em;vertical-align:0em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;m&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;d&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;左边就打标记并且存入左区间要处理的操作数组里（本来只存放询问）。&lt;/p&gt;
+&lt;h2 id=&#34;那么动态的怎么办&#34;&gt;那么动态的怎么办？&lt;/h2&gt;
+&lt;p&gt;也就是可以看成是加入了删除操作，和新的加入操作，在树状数组上重新打标记即可。&lt;/p&gt;
+&lt;h2 id=&#34;一道题&#34;&gt;一道题&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.luogu.com.cn/problem/P2617&#34;&gt;Luogu P2617 Dynamic Rankings&lt;/a&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;#include&amp;lt;cstdio&amp;gt;
+#include&amp;lt;cstring&amp;gt;
+#define inf 1e9
+using namespace std;
+struct DATA
+{
+	int l,r,k,flag,val,id,add;
+}rec[400005],ql[400005],qr[400005];
+int n,m,cnt,tree[400005],ans[400005],a[400005];
+bool needAns[400005];
+int lowbit(int x)
+{
+	return x&amp;amp;-x;
+}
+void update(int x,int val)
+{
+	for (int i=x;i&amp;lt;=n;i+=lowbit(i)) tree[i]+=val;
+}
+int query(int x)
+{
+	int ret=0;
+	for (int i=x;i;i-=lowbit(i)) ret+=tree[i];
+	return ret;
+}
+//树状数组
+void solve(int L,int R,int l,int r)
+{
+	if (l&amp;gt;r) return ;
+	if (L==R)
+	{
+		for (int i=l;i&amp;lt;=r;i++)
+			if (rec[i].flag==1)
+				ans[rec[i].id]=L;//记录答案
+		return ;
+	}
+	int mid=(L+R)&amp;gt;&amp;gt;1,cnt1=0,cnt2=0;
+	for (int i=l;i&amp;lt;=r;i++)
+	{
+		if (rec[i].flag==0)
+		{
+			if (rec[i].val&amp;lt;=mid) ql[++cnt1]=rec[i],update(rec[i].id,rec[i].add);
+			else qr[++cnt2]=rec[i];
+            //记录加入操作和删除操作
+		}
+		else if (rec[i].flag==1)
+		{
+			int tmp=query(rec[i].r)-query(rec[i].l-1);
+			if (tmp&amp;gt;=rec[i].k) ql[++cnt1]=rec[i];
+			else qr[++cnt2]=rec[i],qr[cnt2].k-=tmp;
+            //记录询问操作
+		}
+	}
+	for (int i=1;i&amp;lt;=cnt1;i++) 
+		if (ql[i].flag==0) update(ql[i].id,-ql[i].add);//清空标记，不要用memset
+	int now=l;
+	for (int i=1;i&amp;lt;=cnt1;i++,now++) rec[now]=ql[i];
+	for (int i=1;i&amp;lt;=cnt2;i++,now++) rec[now]=qr[i];
+    //分治
+	solve(L,mid,l,l+cnt1-1);
+	solve(mid+1,R,l+cnt1,r);
+}
+int main()
+{
+	scanf(&amp;quot;%d%d&amp;quot;,&amp;amp;n,&amp;amp;m);
+	for (int i=1;i&amp;lt;=n;i++)
+	{
+		DATA tmp;
+		scanf(&amp;quot;%d&amp;quot;,&amp;amp;tmp.val);
+		tmp.flag=0;tmp.id=i;tmp.add=1;
+		a[i]=tmp.val;
+		rec[++cnt]=tmp;	
+	}
+	for (int i=1;i&amp;lt;=m;i++)
+	{
+		DATA tmp;char opt;
+		scanf(&amp;quot;\n%c&amp;quot;,&amp;amp;opt);
+		if (opt==&#39;Q&#39;)
+		{
+			scanf(&amp;quot;%d%d%d&amp;quot;,&amp;amp;tmp.l,&amp;amp;tmp.r,&amp;amp;tmp.k);
+			tmp.flag=1;tmp.id=i;
+			rec[++cnt]=tmp;
+			needAns[i]=true;
+		}
+		else
+		{
+			scanf(&amp;quot;%d%d&amp;quot;,&amp;amp;tmp.id,&amp;amp;tmp.val);
+			tmp.flag=0;tmp.add=1;
+			rec[++cnt]=tmp;
+			tmp.val=a[tmp.id];
+			tmp.add=-1;
+			rec[++cnt]=tmp;
+			a[tmp.id]=rec[cnt-1].val;
+		}
+	}
+	solve(-inf,inf,1,cnt);
+	for (int i=1;i&amp;lt;=m;i++)
+		if (needAns[i]) printf(&amp;quot;%d\n&amp;quot;,ans[i]);
+	return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+">整体二分入门——动态区间第k小</a>
+      </div>
       
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://nanjo712.github.io/nXkP-mpj3/"" data-c="

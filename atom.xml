@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://nanjo712.github.io</id>
     <title>WSR的安全屋</title>
-    <updated>2020-07-23T14:00:26.594Z</updated>
+    <updated>2020-07-24T00:08:33.831Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://nanjo712.github.io"/>
     <link rel="self" href="https://nanjo712.github.io/atom.xml"/>
@@ -10,6 +10,132 @@
     <logo>https://nanjo712.github.io/images/avatar.png</logo>
     <icon>https://nanjo712.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, WSR的安全屋</rights>
+    <entry>
+        <title type="html"><![CDATA[整体二分入门——动态区间第k小]]></title>
+        <id>https://nanjo712.github.io/dYCjdEkAP/</id>
+        <link href="https://nanjo712.github.io/dYCjdEkAP/">
+        </link>
+        <updated>2020-07-23T14:02:15.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="引入">引入</h2>
+<p>对于静态区间第k小的问题，我们都知道可以用主席树解决。<br>
+如果是带上修改操作呢？主席树并不能解决这个问题，一般的解法有树套树、KD-Tree和整体二分等。<br>
+这篇博客选择使用整体二分来解决这个问题。</p>
+<h2 id="什么是整体二分应该怎么做">什么是整体二分？应该怎么做？</h2>
+<p>假定现在只有一个询问，用二分的做法。<br>
+考虑对值域进行二分，在区间中标记出现在<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi><mi>i</mi><mi>d</mi></mrow><annotation encoding="application/x-tex">mid</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">i</span><span class="mord mathdefault">d</span></span></span></span>左边的数，统计这个区间被标记的数的个数，如果个数<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>s</mi><mo>≤</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">s\leq k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="mord mathdefault">s</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span>，则说明所需的答案并不在<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi><mi>i</mi><mi>d</mi></mrow><annotation encoding="application/x-tex">mid</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">i</span><span class="mord mathdefault">d</span></span></span></span>的左半边，而在右半边，反之则说明在左半边，此时递归地处理即可，当值域只有一个数时，该数即为答案。<br>
+打标记需要利用数据结构，技术上只需要支持单点修改和区间查询即可。一般使用树状数组。<br>
+那么当询问变多的时候呢？难道我们要每次重新打标记，每次重新二分吗？<br>
+当然不，我们可以整体二分，也就是处理所有的询问。<br>
+那么我们只要按照上面的思路，对所有询问同时进行处理即可。<br>
+具体怎么做呢？我们可以每次都暴力扫一遍来打标记，但是这样复杂度可能会炸。<br>
+我们考虑一个整体二分的特性，我们在递归时的每一个区间内部，保持了询问的相对顺序，按照询问的顺序来确定左右区间（当然也可以不按顺序，但是一般人都是按顺序的吧……没人闲的没事干专门去改个顺序）。考虑到上一个做法复杂度爆炸的原因是因为我把与当前要查询的所有区间无关的数也打上了标记，这次我们只打相关的数标记即可。<br>
+具体做法就是引入一个加入操作，把最初的赋值操作视为加入，如果在<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi><mi>i</mi><mi>d</mi></mrow><annotation encoding="application/x-tex">mid</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">i</span><span class="mord mathdefault">d</span></span></span></span>左边就打标记并且存入左区间要处理的操作数组里（本来只存放询问）。</p>
+<h2 id="那么动态的怎么办">那么动态的怎么办？</h2>
+<p>也就是可以看成是加入了删除操作，和新的加入操作，在树状数组上重新打标记即可。</p>
+<h2 id="一道题">一道题</h2>
+<p><a href="https://www.luogu.com.cn/problem/P2617">Luogu P2617 Dynamic Rankings</a></p>
+<pre><code class="language-cpp">#include&lt;cstdio&gt;
+#include&lt;cstring&gt;
+#define inf 1e9
+using namespace std;
+struct DATA
+{
+	int l,r,k,flag,val,id,add;
+}rec[400005],ql[400005],qr[400005];
+int n,m,cnt,tree[400005],ans[400005],a[400005];
+bool needAns[400005];
+int lowbit(int x)
+{
+	return x&amp;-x;
+}
+void update(int x,int val)
+{
+	for (int i=x;i&lt;=n;i+=lowbit(i)) tree[i]+=val;
+}
+int query(int x)
+{
+	int ret=0;
+	for (int i=x;i;i-=lowbit(i)) ret+=tree[i];
+	return ret;
+}
+//树状数组
+void solve(int L,int R,int l,int r)
+{
+	if (l&gt;r) return ;
+	if (L==R)
+	{
+		for (int i=l;i&lt;=r;i++)
+			if (rec[i].flag==1)
+				ans[rec[i].id]=L;//记录答案
+		return ;
+	}
+	int mid=(L+R)&gt;&gt;1,cnt1=0,cnt2=0;
+	for (int i=l;i&lt;=r;i++)
+	{
+		if (rec[i].flag==0)
+		{
+			if (rec[i].val&lt;=mid) ql[++cnt1]=rec[i],update(rec[i].id,rec[i].add);
+			else qr[++cnt2]=rec[i];
+            //记录加入操作和删除操作
+		}
+		else if (rec[i].flag==1)
+		{
+			int tmp=query(rec[i].r)-query(rec[i].l-1);
+			if (tmp&gt;=rec[i].k) ql[++cnt1]=rec[i];
+			else qr[++cnt2]=rec[i],qr[cnt2].k-=tmp;
+            //记录询问操作
+		}
+	}
+	for (int i=1;i&lt;=cnt1;i++) 
+		if (ql[i].flag==0) update(ql[i].id,-ql[i].add);//清空标记，不要用memset
+	int now=l;
+	for (int i=1;i&lt;=cnt1;i++,now++) rec[now]=ql[i];
+	for (int i=1;i&lt;=cnt2;i++,now++) rec[now]=qr[i];
+    //分治
+	solve(L,mid,l,l+cnt1-1);
+	solve(mid+1,R,l+cnt1,r);
+}
+int main()
+{
+	scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
+	for (int i=1;i&lt;=n;i++)
+	{
+		DATA tmp;
+		scanf(&quot;%d&quot;,&amp;tmp.val);
+		tmp.flag=0;tmp.id=i;tmp.add=1;
+		a[i]=tmp.val;
+		rec[++cnt]=tmp;	
+	}
+	for (int i=1;i&lt;=m;i++)
+	{
+		DATA tmp;char opt;
+		scanf(&quot;\n%c&quot;,&amp;opt);
+		if (opt=='Q')
+		{
+			scanf(&quot;%d%d%d&quot;,&amp;tmp.l,&amp;tmp.r,&amp;tmp.k);
+			tmp.flag=1;tmp.id=i;
+			rec[++cnt]=tmp;
+			needAns[i]=true;
+		}
+		else
+		{
+			scanf(&quot;%d%d&quot;,&amp;tmp.id,&amp;tmp.val);
+			tmp.flag=0;tmp.add=1;
+			rec[++cnt]=tmp;
+			tmp.val=a[tmp.id];
+			tmp.add=-1;
+			rec[++cnt]=tmp;
+			a[tmp.id]=rec[cnt-1].val;
+		}
+	}
+	solve(-inf,inf,1,cnt);
+	for (int i=1;i&lt;=m;i++)
+		if (needAns[i]) printf(&quot;%d\n&quot;,ans[i]);
+	return 0;
+}
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[基础CDQ分治——三维偏序]]></title>
         <id>https://nanjo712.github.io/nXkP-mpj3/</id>
