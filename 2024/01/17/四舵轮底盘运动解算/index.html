@@ -13,13 +13,13 @@
 <meta property="og:site_name" content="The Vault of woshiren">
 <meta property="og:description" content="舵轮具备向任意方向产生速度的能力，因此舵轮底盘可以进行全向运动。 定义底盘坐标系如下，x为正前方，原点为底盘中心。  底盘的运动状态可以表示为$$\boldsymbol{V}&#x3D;\begin{bmatrix} \vec{v}&amp; \vec{\omega}\end{bmatrix}$$其中$v$表示底盘在$X-Y$平面的线速度，$\omega$表示底盘绕自身中心自转的角速度。 令$\t">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="c:\Users\yejia\AppData\Roaming\Typora\typora-user-images\image-20240116192144965.png">
+<meta property="og:image" content="https://nanjo712.github.io/imgs/%E5%9B%9B%E8%88%B5%E8%BD%AE%E5%BA%95%E7%9B%98%E8%BF%90%E5%8A%A8%E8%A7%A3%E7%AE%97/image-20240117032159773.png">
 <meta property="article:published_time" content="2024-01-16T19:14:36.000Z">
-<meta property="article:modified_time" content="2024-01-16T19:15:50.652Z">
+<meta property="article:modified_time" content="2024-01-16T19:24:54.609Z">
 <meta property="article:author" content="woshiren">
 <meta property="article:tag" content="机器人运动学">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="c:\Users\yejia\AppData\Roaming\Typora\typora-user-images\image-20240116192144965.png">
+<meta name="twitter:image" content="https://nanjo712.github.io/imgs/%E5%9B%9B%E8%88%B5%E8%BD%AE%E5%BA%95%E7%9B%98%E8%BF%90%E5%8A%A8%E8%A7%A3%E7%AE%97/image-20240117032159773.png">
   
     <link rel="alternate" href="/atom.xml" title="The Vault of woshiren" type="application/atom+xml">
   
@@ -102,7 +102,7 @@
       
         <p>舵轮具备向任意方向产生速度的能力，因此舵轮底盘可以进行全向运动。</p>
 <p>定义底盘坐标系如下，x为正前方，原点为底盘中心。</p>
-<p><img src="C:\Users\yejia\AppData\Roaming\Typora\typora-user-images\image-20240116192144965.png"></p>
+<p><img src="/../imgs/%E5%9B%9B%E8%88%B5%E8%BD%AE%E5%BA%95%E7%9B%98%E8%BF%90%E5%8A%A8%E8%A7%A3%E7%AE%97/image-20240117032159773.png" alt="image-20240117032159773"></p>
 <p>底盘的运动状态可以表示为<br>$$<br>\boldsymbol{V}&#x3D;\begin{bmatrix} \vec{v}&amp; \vec{\omega}\end{bmatrix}<br>$$<br>其中$v$表示底盘在$X-Y$平面的线速度，$\omega$表示底盘绕自身中心自转的角速度。</p>
 <p>令$\theta&#x3D;\arctan(\frac{l}{w})$，$\vec{r_i}$为车体中心指向轮子中心的向量，$|\vec{r_i}|&#x3D;\frac{\sqrt{l^2+w^2}}{2}$</p>
 <p>我们将角速度$\omega$映射到四个轮子上，于是有<br>$$<br>\vec{v_{\omega i}}&#x3D;\vec{\omega}\times \vec{r_i}&#x3D;|\vec\omega||\vec{r_i}|(\cos(\theta_i),sin(\theta_i))<br>$$<br>其中<br>$$<br>\begin{bmatrix}<br>\theta_1\<br>\theta_2\<br>\theta_3\<br>\theta_4<br>\end{bmatrix}&#x3D;<br>\begin{bmatrix}<br> \pi-\theta\<br>\theta-\pi\<br> -\theta\<br> \theta<br>\end{bmatrix}<br>$$</p>
