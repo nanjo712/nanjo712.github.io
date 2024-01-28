@@ -24,43 +24,6 @@
   --highlight-gutter-foreground: #555;
   color-scheme: light;
 }
-@media (prefers-color-scheme: dark) {
-  :root {
-    --body-bg-color: #282828;
-    --content-bg-color: #333;
-    --card-bg-color: #555;
-    --text-color: #ccc;
-    --blockquote-color: #bbb;
-    --link-color: #ccc;
-    --link-hover-color: #eee;
-    --brand-color: #ddd;
-    --brand-hover-color: #ddd;
-    --table-row-odd-bg-color: #282828;
-    --table-row-hover-bg-color: #363636;
-    --menu-item-bg-color: #555;
-    --theme-color: #222;
-    --btn-default-bg: #222;
-    --btn-default-color: #ccc;
-    --btn-default-border-color: #555;
-    --btn-default-hover-bg: #666;
-    --btn-default-hover-color: #ccc;
-    --btn-default-hover-border-color: #666;
-    --highlight-background: #1c1b1b;
-    --highlight-foreground: #fff;
-    --highlight-gutter-background: #323131;
-    --highlight-gutter-foreground: #e8e8e8;
-    color-scheme: dark;
-  }
-  img {
-    opacity: 0.75;
-  }
-  img:hover {
-    opacity: 0.9;
-  }
-  iframe {
-    color-scheme: light;
-  }
-}
 html {
   line-height: 1.15; /* 1 */
   -webkit-text-size-adjust: 100%; /* 2 */
@@ -401,6 +364,123 @@ td {
 .toggle.toggle-close :last-child {
   top: -6px;
   transform: rotate(-45deg);
+}
+pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em
+}
+code.hljs {
+  padding: 3px 5px
+}
+/*!
+  Theme: Default
+  Description: Original highlight.js style
+  Author: (c) Ivan Sagalaev <maniac@softwaremaniacs.org>
+  Maintainer: @highlightjs/core-team
+  Website: https://highlightjs.org/
+  License: see project LICENSE
+  Touched: 2021
+*/
+/*
+This is left on purpose making default.css the single file that can be lifted
+as-is from the repository directly without the need for a build step
+
+Typically this "required" baseline CSS is added by `makestuff.js` during build.
+*/
+pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em
+}
+code.hljs {
+  padding: 3px 5px
+}
+/* end baseline CSS */
+.hljs {
+  background: #F3F3F3;
+  color: #444
+}
+/* Base color: saturation 0; */
+.hljs-subst {
+  /* default */
+  
+}
+/* purposely ignored */
+.hljs-formula,
+.hljs-attr,
+.hljs-property,
+.hljs-params {
+  
+}
+.hljs-comment {
+  color: #697070
+}
+.hljs-tag,
+.hljs-punctuation {
+  color: #444a
+}
+.hljs-tag .hljs-name,
+.hljs-tag .hljs-attr {
+  color: #444
+}
+.hljs-keyword,
+.hljs-attribute,
+.hljs-selector-tag,
+.hljs-meta .hljs-keyword,
+.hljs-doctag,
+.hljs-name {
+  font-weight: bold
+}
+/* User color: hue: 0 */
+.hljs-type,
+.hljs-string,
+.hljs-number,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-quote,
+.hljs-template-tag,
+.hljs-deletion {
+  color: #880000
+}
+.hljs-title,
+.hljs-section {
+  color: #880000;
+  font-weight: bold
+}
+.hljs-regexp,
+.hljs-symbol,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-link,
+.hljs-selector-attr,
+.hljs-operator,
+.hljs-selector-pseudo {
+  color: #ab5656
+}
+/* Language color: hue: 90; */
+.hljs-literal {
+  color: #695
+}
+.hljs-built_in,
+.hljs-bullet,
+.hljs-code,
+.hljs-addition {
+  color: #397300
+}
+/* Meta color: hue: 200 */
+.hljs-meta {
+  color: #1f7199
+}
+.hljs-meta .hljs-string {
+  color: #38a
+}
+/* Misc effects */
+.hljs-emphasis {
+  font-style: italic
+}
+.hljs-strong {
+  font-weight: bold
 }
 .highlight:hover .copy-btn,
 .code-container:hover .copy-btn {
@@ -2229,52 +2309,6 @@ ul.breadcrumb li:last-child {
   border-bottom-color: #111;
   color: #111;
 }
-@media (prefers-color-scheme: dark) {
-  .tag-cloud-0 {
-    border-bottom-color: #555;
-    color: #555;
-  }
-  .tag-cloud-1 {
-    border-bottom-color: #646464;
-    color: #646464;
-  }
-  .tag-cloud-2 {
-    border-bottom-color: #737373;
-    color: #737373;
-  }
-  .tag-cloud-3 {
-    border-bottom-color: #828282;
-    color: #828282;
-  }
-  .tag-cloud-4 {
-    border-bottom-color: #929292;
-    color: #929292;
-  }
-  .tag-cloud-5 {
-    border-bottom-color: #a1a1a1;
-    color: #a1a1a1;
-  }
-  .tag-cloud-6 {
-    border-bottom-color: #b0b0b0;
-    color: #b0b0b0;
-  }
-  .tag-cloud-7 {
-    border-bottom-color: #c0c0c0;
-    color: #c0c0c0;
-  }
-  .tag-cloud-8 {
-    border-bottom-color: #cfcfcf;
-    color: #cfcfcf;
-  }
-  .tag-cloud-9 {
-    border-bottom-color: #dedede;
-    color: #dedede;
-  }
-  .tag-cloud-10 {
-    border-bottom-color: #eee;
-    color: #eee;
-  }
-}
 .gt-header a,
 .gt-comments a,
 .gt-popup a {
@@ -2282,11 +2316,6 @@ ul.breadcrumb li:last-child {
 }
 .gt-container .gt-popup .gt-action.is--active::before {
   top: 0.7em;
-}
-@media (prefers-color-scheme: dark) {
-  .gt-container .gt-header-textarea {
-    background-color: var(--card-bg-color) !important;
-  }
 }
 .search-active {
   overflow: hidden;
@@ -2344,11 +2373,6 @@ ul.breadcrumb li:last-child {
   border-top-right-radius: 5px;
   display: flex;
   padding: 5px;
-}
-@media (prefers-color-scheme: dark) {
-  .search-popup .search-header {
-    background: #666;
-  }
 }
 .search-popup input.search-input {
   background: transparent;
