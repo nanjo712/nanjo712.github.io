@@ -46,14 +46,20 @@ relative_link: false
 future: true
 syntax_highlighter: highlight.js
 highlight:
-  line_number: true
+  enable: true
   auto_detect: false
+  line_number: true
+  line_threshold: 0
   tab_replace: ''
+  exclude_languages:
+    - example
   wrap: true
   hljs: false
 prismjs:
+  enable: false
   preprocess: true
   line_number: true
+  line_threshold: 0
   tab_replace: ''
 
 # Home page setting
@@ -105,3 +111,10 @@ deploy:
   type: git
   repository: https://github.com/nanjo712/nanjo712.github.io.git  # 你的仓库地址
   branch: gh-pages
+
+# Search service
+search:
+  path: search.xml
+  field: post
+  content: true
+  format: html

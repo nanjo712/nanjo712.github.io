@@ -3,13 +3,13 @@ title: std::chrono用法解析
 date: 2024-01-27 22:41:49
 tags: C/C++
 ---
-# std::chrono用法解析
-
 `std::chrono`是C++11引入的一个全新的有关时间处理的库。
 
 新标准以前的C++往往会使用定义在`ctime`头文件中的C-Style时间库`std::time`。
 
 相较于旧的库，`std::chrono`完善地定义了时间段（duration）、时钟（clock）和时间点（time point）三个概念，并且给出了对多种时间单位的支持，提供了更高的计时精度、更友好的单位处理以及更方便的算术操作（以及更好的类型安全）。
+
+<!--more-->
 
 下面，我们将逐步说明`std::chrono`用法。
 
@@ -23,7 +23,7 @@ Tips：本文参考的库代码主要来自MSVC，少部分来自GCC
 
 它的签名如下：
 
-```cpp
+```c++
 template<
     class Rep,
     class Period = std::ratio<1>
@@ -40,7 +40,7 @@ template<
 
 一个简单的例子：
 
-```cpp
+```c++
 #include <chrono>
 #include <thread>
 #include <iostream>
@@ -86,7 +86,7 @@ int main()
 
 定义在`std::chrono`的时间单位事实上是一个`duration`，描述一个时间段。因此我们容易见得：
 
-```cpp
+```c++
 std::chrono::duration<long long> dur1(2);
 std::chrono::seconds dur2(2);
 ```
@@ -101,7 +101,7 @@ std::chrono::seconds dur2(2);
 
 现在， 出于一种不可明说理由，我们引入了一个新的时间单位，记作$\mathrm{A}$，其中$1\mathrm{A}=500\mathrm{ms}$。为了描述使用这个单位记录的`duration`，我们可以这样定义：
 
-```cpp
+```c++
 std::duration<long long,std::ratio<1,2>> dur; // 1/2s=0.5s=500ms
 ```
 
@@ -109,7 +109,7 @@ std::duration<long long,std::ratio<1,2>> dur; // 1/2s=0.5s=500ms
 
 当然，`duration`的单位转换也是支持的，只需要使用`duration_cast`即可。
 
-```cpp
+```c++
 std::chrono::duration_cast<std::chrono::nanoseconds>(dur)
 ```
 
@@ -187,7 +187,7 @@ _当然这不意味着这两个类具有继承关系。事实上，这是一种�
 
 它的签名如下：
 
-```cpp
+```c++
 template<
     class Clock,
     class Duration = typename Clock::duration
@@ -196,7 +196,7 @@ template<
 
 一个简单的例子：
 
-```cpp
+```c++
 std::chrono::time_point<std::chrono::system_clock> 
     start(std::chrono::duration<int>(10));
 ```
@@ -207,20 +207,22 @@ std::chrono::time_point<std::chrono::system_clock>
 
 当然，也有这样的定义方法
 
-```cpp
+```c++
 std::chrono::system_clock::time_point start(std::chrono::duration<int>(10));
 ```
 
 这两者是等价的。
 
-因为time_point是特殊的duration，因此它也可以进行一些算术操作，
+因为`time_point`是特殊的`duration`，因此它也可以进行一些算术操作。
 
-值得注意的是，由于time_point的实际含义是一个点，对一个点的数乘是无意义的，所以time_point并不能支持数乘运算。
+值得注意的是，由于`time_point`的实际含义是一个点，对一个点的数乘是无意义的，所以`time_point`并不能支持数乘运算。
 
 其他的加减操作是符合直观的，概括地说：
 
 - 时间点和时间段相加减得到新的时间点。
 - 时间点与时间点相减得到新的时间段。
+
+自然地，`time_point`也是可以进行单位转换的，只要类比`duration_cast`的用法，使用`time_point_cast`即可。
 
 ## 简化的表示——chrono_literals的使用
 
@@ -232,7 +234,7 @@ std::chrono::system_clock::time_point start(std::chrono::duration<int>(10));
 
 C++认为`10s`是一个字面量（literal），代表`std::chrono::seconds(10)`，正如一个不带后缀的字面量`10`代表一个int类型的整数10一样。
 
-```cpp
+```c++
 using namespace std::literals::chrono_literals;
 std::chrono::system_clock::time_point start(10s);
 ```
