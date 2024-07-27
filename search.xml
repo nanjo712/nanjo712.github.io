@@ -363,4 +363,191 @@ definition“（链接期）或者”redefinition“（编译期）</li>
         <tag>C/C++</tag>
       </tags>
   </entry>
+  <entry>
+    <title>OpenOCD简明指南</title>
+    <url>/2024/07/28/OpenOCD%E7%AE%80%E6%98%8E%E6%8C%87%E5%8D%97/</url>
+    <content><![CDATA[<p>OpenOCD（Open On Chip
+Debugger）是一个开源的嵌入式调试软件，支持多种SoC、FPGA、CPLD和调试器等，提供了一个优秀的抽象层，使得用户可以通过几乎一致的操作对嵌入式工程进行调试。</p>
+<p>本指南仅涉及嵌入式SoC的烧录与调试操作。</p>
+<p>有关FPGA和CPLD的使用笔者暂未探索。</p>
+<span id="more"></span>
+<h2 id="openocd-cli-options">OpenOCD CLI Options</h2>
+<p>这里仅介绍常用的若干命令选项</p>
+<ul>
+<li><p><strong><code>-f</code> 或
+<code>--file &lt;filename&gt;</code></strong>:</p>
+<ul>
+<li><p>指定配置文件。配置文件定义了目标设备、接口和调试器的设置。</p></li>
+<li><p>示例：<code>openocd -f board/stm32f4discovery.cfg</code></p></li>
+</ul></li>
+<li><p><strong><code>-c</code> 或
+<code>--command &lt;cmd&gt;</code></strong>:</p>
+<ul>
+<li><p>执行指定的命令，然后退出。可以用于执行一系列脚本命令。</p></li>
+<li><p>示例：<code>openocd -c "init; reset halt; exit"</code></p></li>
+</ul></li>
+<li><p><strong><code>-d</code> 或
+<code>--debug &lt;level&gt;</code></strong>:</p>
+<ul>
+<li><p>设置调试输出级别。级别从0（无调试信息）到3（详细调试信息）。</p></li>
+<li><p>示例：<code>openocd -d 3</code></p></li>
+</ul></li>
+<li><p><strong><code>-s</code> 或
+<code>--search &lt;dir&gt;</code></strong>:</p>
+<ul>
+<li><p>添加脚本搜索路径。</p></li>
+<li><p>示例：<code>openocd -s /path/to/scripts</code></p></li>
+</ul></li>
+<li><p><strong><code>--telnet_port &lt;port&gt;</code></strong>:</p>
+<ul>
+<li>指定Telnet服务器端口，用于调试会话。</li>
+<li>示例：<code>openocd --telnet_port 4444</code></li>
+</ul></li>
+<li><p><strong><code>--gdb_port &lt;port&gt;</code></strong>:</p>
+<ul>
+<li>指定GDB服务器端口，用于连接GDB调试器。</li>
+<li>示例：<code>openocd --gdb_port 3333</code></li>
+</ul></li>
+<li><p><strong><code>--tcl_port &lt;port&gt;</code></strong>:</p>
+<ul>
+<li>指定TCL服务器端口，用于脚本控制。</li>
+<li>示例：<code>openocd --tcl_port 6666</code></li>
+</ul></li>
+</ul>
+<p>把端口指定为disabled将禁用对应服务器。</p>
+<h2 id="openocd-config">OpenOCD Config</h2>
+<p>在使用OpenOCD对进行编程调试时，需要提供若干cfg文件用于提供信息：</p>
+<ul>
+<li>interface：调试器接口，如ST-Link等；</li>
+<li>board：开发板，如ST-Nucleo系列的开发板等；</li>
+<li>target：嵌入式SoC，如STM32F4等；</li>
+</ul>
+<p>interface指明了使用的调试器硬件，target指明了待调试的目标SoC。</p>
+<p>特定的board有确定的target和interface，所以board内部一般会直接引用interface和target。</p>
+<p>北邮机器人队内部常用两种调试器ST-Link和正点原子DAP-Link和STM32F4系列的MCU，因此有两种典型的配置：</p>
+<figure class="highlight tcl"><table><tr><td class="code"><pre><span class="line"><span class="comment"># stm32f4 with cmsis-dap</span></span><br><span class="line"><span class="keyword">source</span> [find interface/cmsis-dap.cfg]</span><br><span class="line"><span class="keyword">source</span> [find target/stm32f4x.cfg]</span><br></pre></td></tr></table></figure>
+<figure class="highlight tcl"><table><tr><td class="code"><pre><span class="line"><span class="comment"># stm32f4 with st-link</span></span><br><span class="line"><span class="keyword">source</span> [find interface/stlink.cfg]</span><br><span class="line"><span class="keyword">source</span> [find target/stm32f4x.cfg]</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><code>source &lt;config file&gt;</code>指的是引入指定的配置文件。</p></li>
+<li><p><code>find &lt;path&gt;</code>指的是在特定位置（如OpenOCD的安装目录）搜索指定的配置文件。</p></li>
+</ul>
+<h2 id="openocd-server">OpenOCD Server</h2>
+<p>OpenOCD启动后会运行三种服务：</p>
+<ul>
+<li>GDB：默认运行在3333端口，GDB调试服务；</li>
+<li>TCL：默认运行在6666端口，TCL脚本服务；</li>
+<li>Telnet：默认运行在4444端口，Telnet服务；</li>
+</ul>
+<p>GDB服务用于接入GDB，在GDB中输入<code>target remote :&lt;port&gt;</code>即可接入调试；</p>
+<p>Telnet服务可以通过Telnet客户端登录，通过手动输入指令的方式进行调试；</p>
+<p>TCL服务可以通过Socket连接，执行复杂的TCL脚本进行自动化调试；</p>
+<h2 id="openocd-command">OpenOCD Command</h2>
+<p>OpenOCD指令众多，官方文档<span class="exturl" data-url="aHR0cHM6Ly9vcGVub2NkLm9yZy9wYWdlcy9kb2N1bWVudGF0aW9uLmh0bWw=">Documentation
+(openocd.org)<i class="fa fa-external-link-alt"></i></span>有详细的介绍，由于一般使用GDB进行调试，这里不过多介绍其他指令，仅介绍一些常用的指令：</p>
+<h3 id="program">Program</h3>
+<figure class="highlight tcl"><table><tr><td class="code"><pre><span class="line">program &lt;<span class="keyword">filename</span>&gt; [verify] [reset] [<span class="keyword">exit</span>] [file_offset] [mem_offset] [bank]</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong><code>&lt;filename&gt;</code></strong>:
+<ul>
+<li>要编程的文件的路径，可以是二进制文件（*.bin）、Intel HEX
+文件（*.hex）或 ELF 文件（*.elf）。</li>
+<li>bin文件是纯粹的二进制数据，不包含任何包括地址信息在内的其他数据，烧录时必须指定内存偏移；</li>
+<li>hex文件是文本文件，包含十六进制编码的数据和地址信息，可以直接烧录；</li>
+<li>elf文件是标准的二进制文件，除了数据及其地址之外，还包含了符号表、调试信息等完整的元数据，可以直接烧录；</li>
+</ul></li>
+<li><strong><code>verify</code></strong>（可选）:
+<ul>
+<li>编程后进行校验，确保数据正确写入。</li>
+</ul></li>
+<li><strong><code>reset</code></strong>（可选）:
+<ul>
+<li>编程完成后复位目标设备。</li>
+</ul></li>
+<li><strong><code>exit</code></strong>（可选）:
+<ul>
+<li>编程完成后退出 OpenOCD。</li>
+</ul></li>
+<li><strong><code>file_offset</code></strong>（可选）:
+<ul>
+<li>文件中数据的偏移量，通常用于将部分文件编程到设备。</li>
+<li>指定文件偏移时，必须同时指定内存偏移；</li>
+</ul></li>
+<li><strong><code>mem_offset</code></strong>（可选）:
+<ul>
+<li>目标设备内存中的偏移地址，指定数据写入的位置。</li>
+<li>仅指定一个地址时，该地址被视为内存偏移；</li>
+</ul></li>
+<li><strong><code>bank</code></strong>（可选）:
+<ul>
+<li>指定 Flash 存储器的Bank，当设备具有多个 Flash bank 时使用。</li>
+</ul></li>
+</ul>
+<p><strong>实例：</strong></p>
+<figure class="highlight tcl"><table><tr><td class="code"><pre><span class="line">program firmware.elf verify reset <span class="keyword">exit</span></span><br></pre></td></tr></table></figure>
+<p>烧录firmware.elf，校验并重置目标SoC，完成后退出OpenOCD。</p>
+<figure class="highlight tcl"><table><tr><td class="code"><pre><span class="line">program firmware.bin <span class="number">0x08000000</span> verify reset <span class="keyword">exit</span></span><br></pre></td></tr></table></figure>
+<p>烧录firmware.bin，从地址0x08000000开始烧录，校验并重置目标SoC，完成后退出OpenOCD</p>
+<h3 id="reset指令">Reset指令</h3>
+<figure class="highlight tcl"><table><tr><td class="code"><pre><span class="line">reset [run|halt|init|deassert|assert|none]</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><strong><code>run</code></strong>:</p>
+<ul>
+<li><p>复位目标设备并立即让它运行。这是默认的复位行为。</p></li>
+<li><p>使用场景：通常用于将设备复位到初始状态并继续运行，例如在固件更新后让设备开始执行新的固件。</p></li>
+</ul></li>
+<li><p><strong><code>halt</code></strong>:</p>
+<ul>
+<li><p>复位目标设备并让它在复位后保持暂停状态。</p></li>
+<li><p>使用场景：在调试时常用，以确保设备在已知状态下暂停，便于检查初始化状态或设置断点。</p></li>
+</ul></li>
+<li><p><strong><code>init</code></strong>:</p>
+<ul>
+<li><p>复位目标设备，并在复位后执行初始化步骤。</p></li>
+<li><p>使用场景：在需要重新初始化调试器和设备状态时使用，确保设备从复位后的已知状态开始。</p></li>
+</ul></li>
+<li><p><strong><code>deassert</code></strong>:</p>
+<ul>
+<li><p>取消复位信号，将目标设备从复位状态释放。</p></li>
+<li><p>使用场景：在需要手动控制复位信号的复杂调试场景中使用。</p></li>
+</ul></li>
+<li><p><strong><code>assert</code></strong>:</p>
+<ul>
+<li><p>断言复位信号，使目标设备进入复位状态。</p></li>
+<li><p>使用场景：在需要手动控制复位信号的复杂调试场景中使用。</p></li>
+</ul></li>
+<li><p><strong><code>none</code></strong>:</p>
+<ul>
+<li><p>不进行任何复位操作，通常与 <code>reset_config</code>
+配置配合使用。</p></li>
+<li><p>使用场景：当复位行为已通过其他方式配置时使用。</p></li>
+</ul></li>
+</ul>
+<p><strong>实例</strong></p>
+<figure class="highlight tcl"><table><tr><td class="code"><pre><span class="line">reset run</span><br></pre></td></tr></table></figure>
+<p>复位目标SoC，使之开始运行；</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">reset halt</span><br></pre></td></tr></table></figure>
+<p>复位目标SoC，暂停于复位向量处；</p>
+<figure class="highlight tcl"><table><tr><td class="code"><pre><span class="line">reset init</span><br></pre></td></tr></table></figure>
+<p>复位目标SoC，执行到某个被指定的位置（完成初始化），相当于保证设备处于已初始化的稳定态；</p>
+<h2 id="实践指导">实践指导</h2>
+<h3 id="烧录">烧录</h3>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">openocd -f &lt;config-file&gt; -c <span class="string">&#x27;program &lt;firware-file&gt; verify reset exit&#x27;</span> </span><br></pre></td></tr></table></figure>
+<h3 id="调试">调试</h3>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">openocd -f &lt;config-file&gt; -c <span class="string">&#x27;program &lt;firware-file&gt; verify reset&#x27;</span> -c <span class="string">&#x27;init; reset init;&#x27;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>program指令是可选的，但是笔者认为一般还是重新烧录比较稳妥（以防忘记烧录新固件）；</p></li>
+<li><p>init指令和reset指令是可选的，但是执行一次复位之后可以确保设备与调试器均处于稳定态；</p></li>
+<li><p>可以通过指令指定服务器端口，参考第一节；</p></li>
+</ul>
+<p>此后，启用调试有三种方法：</p>
+<ul>
+<li>使用telnet连接openocd</li>
+<li>连接tcl服务器执行tcl脚本</li>
+<li>使用gdb，连接远程目标到openocd的gdbserver</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>嵌入式开发</tag>
+      </tags>
+  </entry>
 </search>
