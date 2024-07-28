@@ -75,17 +75,22 @@ interface指明了使用的调试器硬件，target指明了待调试的目标So
 # stm32f4 with cmsis-dap
 source [find interface/cmsis-dap.cfg]
 source [find target/stm32f4x.cfg]
+reset_config none
 ```
 
 ```tcl
 # stm32f4 with st-link
 source [find interface/stlink.cfg]
 source [find target/stm32f4x.cfg]
+reset_config none
 ```
 
 - `source <config file>`指的是引入指定的配置文件。
-
 - `find <path>`指的是在特定位置（如OpenOCD的安装目录）搜索指定的配置文件。
+- `reset_config`指的是OpenOCD复位指令的行为，常用的选项如下：
+  - `srst_only`：仅系统复位，有JTAG门控
+  - `srst_nogate`：仅系统复位，无JTAG门控
+  - `none`：默认配置，一般来说用这个就好
 
 ## OpenOCD Server
 

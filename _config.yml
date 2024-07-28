@@ -109,7 +109,7 @@ theme: next
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repository: https://github.com/nanjo712/nanjo712.github.io.git  # 你的仓库地址
+  repository: git@github.com:nanjo712/nanjo712.github.io.git  # 你的仓库地址
   branch: gh-pages
 
 # Search service
