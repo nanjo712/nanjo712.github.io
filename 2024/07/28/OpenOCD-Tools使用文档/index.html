@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
 <meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.0.0">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.2.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
@@ -17,23 +17,25 @@
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic%7CJetBrains+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha256-yIDrPSXHZdOZhAqiBP7CKzIwMQmRCJ8UeB8Jo17YC4o=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"nanjo712.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.19.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":true,"nav":null,"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"nanjo712.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.19.2","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":true,"nav":null,"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="OpenOCD Tools是一个将OpenOCD与VSCode集成的小型插件，封装了OpenOCD的烧录和调试操作。 6.11版本之后的CubeMX引入了对CMake的原生支持，可以直接通过CubeMX直接配置生成CMake工程。 当前版本该插件仅支持类STM32 MCU的CMake工程。 功能特性：  一键烧录调试固件 自动扫描固件文件 自动识别MCU，根据选择的调试器生成Ope">
+    <meta name="description" content="OpenOCD Tools是一个将OpenOCD与VSCode集成的小型插件，封装了OpenOCD的烧录和调试操作。 6.11版本之后的CubeMX引入了对CMake的原生支持，可以直接通过CubeMX直接配置生成CMake工程。 当前版本该插件仅支持类STM32 MCU的CMake工程。 功能特性：  一键烧录调试固件 自动扫描固件文件 自动识别MCU，根据选择的调试器生成OpenOCD Con">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OpenOCD-Tools使用文档">
 <meta property="og:url" content="https://nanjo712.github.io/2024/07/28/OpenOCD-Tools%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3/index.html">
 <meta property="og:site_name" content="The Vault of woshiren">
-<meta property="og:description" content="OpenOCD Tools是一个将OpenOCD与VSCode集成的小型插件，封装了OpenOCD的烧录和调试操作。 6.11版本之后的CubeMX引入了对CMake的原生支持，可以直接通过CubeMX直接配置生成CMake工程。 当前版本该插件仅支持类STM32 MCU的CMake工程。 功能特性：  一键烧录调试固件 自动扫描固件文件 自动识别MCU，根据选择的调试器生成Ope">
+<meta property="og:description" content="OpenOCD Tools是一个将OpenOCD与VSCode集成的小型插件，封装了OpenOCD的烧录和调试操作。 6.11版本之后的CubeMX引入了对CMake的原生支持，可以直接通过CubeMX直接配置生成CMake工程。 当前版本该插件仅支持类STM32 MCU的CMake工程。 功能特性：  一键烧录调试固件 自动扫描固件文件 自动识别MCU，根据选择的调试器生成OpenOCD Con">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/nanjo712/PicGoRepo/master/image-20240728211919585.png">
 <meta property="article:published_time" content="2024-07-28T12:38:16.000Z">
 <meta property="article:modified_time" content="2024-07-29T03:50:18.130Z">
 <meta property="article:author" content="woshiren">
 <meta property="article:tag" content="嵌入式">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/nanjo712/PicGoRepo/master/image-20240728211919585.png">
 
 
 <link rel="canonical" href="https://nanjo712.github.io/2024/07/28/OpenOCD-Tools%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3/">
@@ -158,13 +160,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -247,8 +249,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>OpenOCD
-Tools是一个将OpenOCD与VSCode集成的小型插件，封装了OpenOCD的烧录和调试操作。</p>
+    <div class="post-body" itemprop="articleBody"><p>OpenOCD Tools是一个将OpenOCD与VSCode集成的小型插件，封装了OpenOCD的烧录和调试操作。</p>
 <p>6.11版本之后的CubeMX引入了对CMake的原生支持，可以直接通过CubeMX直接配置生成CMake工程。</p>
 <p>当前版本该插件仅支持类STM32 MCU的CMake工程。</p>
 <p>功能特性：</p>
@@ -259,41 +260,27 @@ Tools是一个将OpenOCD与VSCode集成的小型插件，封装了OpenOCD的烧�
 </ul>
 <p><strong>如有更多的功能需求，请在<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL25hbmpvNzEyL29wZW5vY2QtdG9vbHM=">代码仓库<i class="fa fa-external-link-alt"></i></span>中发起Issue。</strong></p>
 <span id="more"></span>
-<h2 id="依赖">依赖</h2>
-<p>CMake
-Tools：为了确保烧录前固件是最新版本，需要调用CMake进行编译。</p>
-<h2 id="界面介绍">界面介绍</h2>
-<p>打开一个STM32CubeMX配置的CMake工程，将激活拓展。</p>
-<figure>
-<img
-src="https://raw.githubusercontent.com/nanjo712/PicGoRepo/master/image-20240728211919585.png"
-alt="VSCode-侧边栏" />
-<figcaption aria-hidden="true">VSCode-侧边栏</figcaption>
-</figure>
+
+<h2 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h2><p>CMake Tools：为了确保烧录前固件是最新版本，需要调用CMake进行编译。</p>
+<h2 id="界面介绍"><a href="#界面介绍" class="headerlink" title="界面介绍"></a>界面介绍</h2><p>打开一个STM32CubeMX配置的CMake工程，将激活拓展。</p>
+<p><img src="https://raw.githubusercontent.com/nanjo712/PicGoRepo/master/image-20240728211919585.png" alt="VSCode-侧边栏"></p>
 <ul>
 <li>MCU-Family：从IOC文件中读取的MCU族；</li>
 <li>Debugger：选择一个Debugger，目前仅有三个选项stlink、cmsis-dap（dap-link）、jlink；</li>
-<li>CFG
-File：OpenOCD的配置文件，可以选择自己编写的配置文件，也可以根据MCU-Family和Debugger的设置自动生成；</li>
-<li>Target
-File：待烧录的固件文件，目前仅支持ELF文件烧录，可以通过CMake构建生成；</li>
-<li>SVD
-File：描述MCU外设寄存器地址的文件，一般由MCU厂商提供，STM32的SVD文件与CubeProgrammer打包分发。该配置项目可选，未配置该项则会在无外设视图的情况下启动调试；</li>
+<li>CFG File：OpenOCD的配置文件，可以选择自己编写的配置文件，也可以根据MCU-Family和Debugger的设置自动生成；</li>
+<li>Target File：待烧录的固件文件，目前仅支持ELF文件烧录，可以通过CMake构建生成；</li>
+<li>SVD File：描述MCU外设寄存器地址的文件，一般由MCU厂商提供，STM32的SVD文件与CubeProgrammer打包分发。该配置项目可选，未配置该项则会在无外设视图的情况下启动调试；</li>
 <li>Flash：烧录固件；</li>
 <li>Debug：调试固件；</li>
 </ul>
-<h2 id="使用流程">使用流程</h2>
-<ul>
+<h2 id="使用流程"><a href="#使用流程" class="headerlink" title="使用流程"></a>使用流程</h2><ul>
 <li>打开STM32工程，插件自动检测MCU；</li>
 <li>选择使用的调试器，如stlink；</li>
-<li>点击生成CFG文件，在工作区目录下将生成一个openocd.cfg文件；如果需要自定义，可以自行更改该文件，或者点击CFG
-file选项选择一个CFG文件；</li>
+<li>点击生成CFG文件，在工作区目录下将生成一个openocd.cfg文件；如果需要自定义，可以自行更改该文件，或者点击CFG file选项选择一个CFG文件；</li>
 <li>选择目标文件，点击之后插件将扫描目录内所有ELF文件，选择需要烧录或者调试的固件；</li>
 <li>点击Flash进行烧录，或者点击Debug进行调试</li>
 </ul>
-<h2 id="更好的调试支持">更好的调试支持</h2>
-<p>以下插件可以带来更好的调试体验，用户可以根据需要任意选择，与OpenOCD
-Tools一起使用。</p>
+<h2 id="更好的调试支持"><a href="#更好的调试支持" class="headerlink" title="更好的调试支持"></a>更好的调试支持</h2><p>以下插件可以带来更好的调试体验，用户可以根据需要任意选择，与OpenOCD Tools一起使用。</p>
 <ul>
 <li>Embedded Tools拓展：RTOS视图和外设试图</li>
 <li>RTOS Views：RTOS视图</li>
@@ -337,6 +324,9 @@ Tools一起使用。</p>
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2026/01/13/Hello-World/" rel="next" title="Hello World">
+                  Hello World <i class="fa fa-angle-right"></i>
+                </a>
             </div>
           </div>
     </footer>
@@ -356,8 +346,8 @@ Tools一起使用。</p>
     <div class="footer-inner">
 
   <div class="copyright">
-    &copy; 
-    <span itemprop="copyrightYear">2024</span>
+    &copy; 2024 – 
+    <span itemprop="copyrightYear">2026</span>
     <span class="with-love">
       <i class="fa fa-heart"></i>
     </span>
