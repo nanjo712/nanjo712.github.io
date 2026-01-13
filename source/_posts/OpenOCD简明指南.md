@@ -1,9 +1,14 @@
 ---
+publish: true
 title: OpenOCD简明指南
 date: 2024-07-28 01:07:09
 tags: 嵌入式开发
+zhihu-title: OpenOCD简明指南
+zhihu-topics: 嵌入式 OpenOCD
+zhihu-link: https://zhuanlan.zhihu.com/p/711322588
+zhihu-cover: "[[Castorice.png]]"
+zhihu-updated-at: 2026-01-13 21:59
 ---
-
 OpenOCD（Open On Chip Debugger）是一个开源的嵌入式调试软件，支持多种SoC、FPGA、CPLD和调试器等，提供了一个优秀的抽象层，使得用户可以通过几乎一致的操作对嵌入式工程进行调试。
 
 本指南仅涉及嵌入式SoC的烧录与调试操作。
