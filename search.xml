@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>std::chrono用法解析</title>
-    <url>/2024/01/27/std-chrono%E7%94%A8%E6%B3%95%E8%A7%A3%E6%9E%90/</url>
+    <url>//usage-analysis-std-chrono/</url>
     <content><![CDATA[<p><code>std::chrono</code>是C++11引入的一个全新的有关时间处理的库。</p>
 <p>新标准以前的C++往往会使用定义在<code>ctime</code>头文件中的C-Style时间库<code>std::time</code>。</p>
 <p>相较于旧的库，<code>std::chrono</code>完善地定义了时间段（duration）、时钟（clock）和时间点（time point）三个概念，并且给出了对多种时间单位的支持，提供了更高的计时精度、更友好的单位处理以及更方便的算术操作（以及更好的类型安全）。</p>
@@ -25,9 +25,11 @@
 <h4 id="时间单位"><a href="#时间单位" class="headerlink" title="时间单位"></a>时间单位</h4><p>一般地，在未经特殊指定的情况下，我们认为C++以秒为默认单位。</p>
 <p>为了方便地引入其他单位，我们会使用<code>std::ratio</code>，有关它的具体行为可以参考<span class="exturl" data-url="aHR0cHM6Ly9lbi5jcHByZWZlcmVuY2UuY29tL3cvY3BwL251bWVyaWMvcmF0aW8vcmF0aW8=">std::ratio Documentation<i class="fa fa-external-link-alt"></i></span>。在这篇文章中，我们只需要知道它是一个表示常数比例的类型，并且它是一个编译期常量。</p>
 <p>下表给出了一些SI单位制中常用的比例，C++的标准库提供了这些比例的语法糖。</p>
-<p><img src="https://raw.githubusercontent.com/nanjo712/PicGoRepo/master/image-20240126001319598.png" alt="image-20240126001319598"></p>
+<img src="https://raw.githubusercontent.com/nanjo712/PicGoRepo/master/image-20240126001319598.png" class="" alt="image-20240126001319598">
+
 <p>基于这份比例表，C++标准库为我们常用的时间单位提供了一些语法糖</p>
-<p><img src="https://raw.githubusercontent.com/nanjo712/PicGoRepo/master/image-20240126002441567.png" alt="image-20240126002441567"></p>
+<img src="https://raw.githubusercontent.com/nanjo712/PicGoRepo/master/image-20240126002441567.png" class="" alt="image-20240126002441567">
+
 <p>笔者在这里简单翻译一下图中的文字说明：</p>
 <blockquote>
 <p>int XX是指这个类型的tick数类型是一个至少具有XX位的有符号整数</p>
@@ -101,7 +103,8 @@
 <p>自然地，<code>time_point</code>也是可以进行单位转换的，只要类比<code>duration_cast</code>的用法，使用<code>time_point_cast</code>即可。</p>
 <h2 id="简化的表示——chrono-literals的使用"><a href="#简化的表示——chrono-literals的使用" class="headerlink" title="简化的表示——chrono_literals的使用"></a>简化的表示——chrono_literals的使用</h2><p><code>chrono_literals</code>是<code>std::literals</code>的一个子命名空间，引入这个命名空间之后我们可以简化时间的表示。</p>
 <p>一个例子是：我们可以用<code>10s</code>等价代替<code>std::chrono::seconds(10)</code>。</p>
-<p><img src="https://raw.githubusercontent.com/nanjo712/PicGoRepo/master/image-20240127222748419.png" alt="image-20240127222748419"></p>
+<img src="https://raw.githubusercontent.com/nanjo712/PicGoRepo/master/image-20240127222748419.png" class="" alt="image-20240127222748419">
+
 <p>C++认为<code>10s</code>是一个字面量（literal），代表<code>std::chrono::seconds(10)</code>，正如一个不带后缀的字面量<code>10</code>代表一个int类型的整数10一样。</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std::literals::chrono_literals;</span><br><span class="line">std::chrono::<span class="function">system_clock::time_point <span class="title">start</span><span class="params">(<span class="number">10</span>s)</span></span>;</span><br></pre></td></tr></table></figure>
 
@@ -110,17 +113,18 @@
 <p><span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU5JTk3JUIwJUU3JUE3JTky">闰秒 - 维基百科，自由的百科全书 (wikipedia.org)<i class="fa fa-external-link-alt"></i></span></p>
 ]]></content>
       <tags>
-        <tag>C/C++</tag>
+        <tag>CPP</tag>
       </tags>
   </entry>
   <entry>
     <title>四舵轮底盘运动解算</title>
-    <url>/2024/01/17/%E5%9B%9B%E8%88%B5%E8%BD%AE%E5%BA%95%E7%9B%98%E8%BF%90%E5%8A%A8%E8%A7%A3%E7%AE%97/</url>
+    <url>//calculation-four-wheel-chassis-motion/</url>
     <content><![CDATA[<p>舵轮具备向任意方向产生速度的能力，因此舵轮底盘可以进行全向运动。</p>
 <span id="more"></span>
 
 <p>定义底盘坐标系如下，x为正前方，原点为底盘中心。</p>
-<p><img src="https://raw.githubusercontent.com/nanjo712/PicGoRepo/master/image-20240117042607140.png" alt="image-20240117042607140"></p>
+<img src="https://raw.githubusercontent.com/nanjo712/PicGoRepo/master/image-20240117042607140.png" class="" alt="image-20240117042607140">
+
 <p>底盘的运动状态可以表示为<br>$$<br>\boldsymbol{V}&#x3D;\begin{bmatrix} \vec{v}&amp; \vec{\omega}\end{bmatrix}<br>$$<br>其中$v$表示底盘在$X-Y$平面的线速度，$\omega$表示底盘绕自身中心自转的角速度。</p>
 <p>令$\theta&#x3D;\arctan(\frac{l}{w})$，$\vec{r_i}$为车体中心指向轮子中心的向量，$|\vec{r_i}|&#x3D;\frac{\sqrt{l^2+w^2}}{2}$</p>
 <p>我们将角速度$\omega$映射到四个轮子上，于是有<br>$$<br>\vec{v_{\omega i}}&#x3D;\vec{\omega}\times \vec{r_i}&#x3D;|\vec\omega||\vec{r_i}|(\cos(\theta_i),sin(\theta_i))<br>$$<br>其中<br>$$<br>\begin{bmatrix}<br>\theta_1\<br>\theta_2\<br>\theta_3\<br>\theta_4<br>\end{bmatrix}&#x3D;<br>\begin{bmatrix}<br> \pi-\theta\<br>\theta-\pi\<br> -\theta\<br> \theta<br>\end{bmatrix}<br>$$</p>
@@ -132,11 +136,158 @@
       </tags>
   </entry>
   <entry>
+    <title>C&amp;C++混合编程与函数重载</title>
+    <url>/2024/04/23/c-c-%E6%B7%B7%E5%90%88%E7%BC%96%E7%A8%8B%E4%B8%8E%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD/</url>
+    <content><![CDATA[<p>C++相比于C，额外支持了函数重载。</p>
+<p>为了更好地进行C/C++混合编程，具体地理解这一机制是必要的。</p>
+<p>考察一个经典的C++程序编译过程，一般来说，这可以被分为四个过程：预编译、编译、汇编、链接。</p>
+<p>函数重载的相关过程主要发生在编译期。</p>
+<span id="more"></span>
+<h3 id="编译期重载决议与名称修饰">编译期：重载决议与名称修饰</h3>
+<p>除了常规的词法分析等工作，C++在编译期还有一项额外的工作：重载决议。</p>
+<p>重载决议的含义是显而易见的：在所有同名的函数实现中，选择匹配最佳的一个作为实际调用的函数。</p>
+<p>这个过程中的匹配规则是涉及到相当多的规则，对此的讨论可以单开一篇文章，这里不过多涉及</p>
+<p><em>事实上，重载决议的匹配规则设计相当优秀，以至于多数情况下你不需要了解其具体机制也足以让其按照你的设想工作。</em></p>
+<p>也就是说，程序在涉及到重载的部分实际调用的程序，在编译阶段已经被确定。</p>
+<p>注意到这样一个事实：编译器会为所有被定义的标识符（函数、变量）生成实际的符号名称。</p>
+<p>但是重载函数的集合实际上具有相同的名称，为了区分这些函数，C编译器和C++编译器具有不同的行为。</p>
+<p>具体地，对于C编译器来说，所有标识符的实际符号名称往往与标识符本身的名称（函数名、变量名）相同（大多数情况下如此，即使有例外，名称也会非常接近）；对于C++编译器，所有标识符的实际符号名称除了会携带标识符本身的名称之外，还会带有其他的信息，比如参数类型、命名空间等。</p>
+<p>简单来说，对于<code>int add(int a,int b)</code>这样一个函数签名，你可以认为C编译器生成的符号是<code>add()</code>，C++编译器生成的符号是<code>add(int,int)</code>。</p>
+<p>实际情况由于涉及模板、类等问题，会比这个复杂很多。只需要理解一点，C++为每一个函数都生成了独一无二的标识符，同名函数的不同重载形式会被映射到到不同的符号名称上。</p>
+<p>看似同名的函数，其实在编译器眼中并不相同。</p>
+<p><strong>综上所述，我们可以做出这样的总结：编译器为函数的所有重载形式生成不同的符号名称；对于一个函数调用，编译器根据匹配规则决定其实际调用的函数实现，并将原本的函数名转换为对应的符号名称。</strong></p>
+<h3 id="链接期符号解析">链接期：符号解析</h3>
+<p>在代码中使用函数、变量被称为一次引用。为了处理这些引用，这些引用在编译期被替换为符号名称，链接器需要将它们与实际的实现关联起来，这一过程被称为链接。链接的规则是复杂的，但是我们可以先避开复杂的细节，基于下面的假设展开讨论：</p>
+<ul>
+<li>同名的符号会被关联到具体的实现上；</li>
+<li>同名的符号仅有唯一的实现；</li>
+</ul>
+<p>这两条假设在大多数情况下是正确且直观的，这对于我们理解函数重载的过程已经很足够了。</p>
+<p>事实上，这两条假设保证了链接器选择的唯一性。</p>
+<p>我们逐一讨论每一条假设的意义：</p>
+<ul>
+<li>假设所有同名的符号不存在一份实现，则会有”undefined
+reference“错误，即所谓未定义的引用；</li>
+<li>假设同名的符号具有两份相同的实现，则会有”multiple
+definition“（链接期）或者”redefinition“（编译期）</li>
+</ul>
+<p>注意到这样一个事实，源代码中同名的函数实际上已经在经过名称修饰后不再同名。所以，每一个函数实际上都具有独一无二的符号名称。可以认为，在链接期时不应该存在同名的符号了。</p>
+<h3 id="实践指导">实践指导</h3>
+<p>C++为了保持语言兼容性，提供了额外的关键字<code>extern "C"&#123; /** some code here **/ &#125;</code>，在这个代码块中所有标识符（函数、变量）的声明都会被按照C的方式被处理，不做任何修饰（所谓按照C的方式被声明）。于是，C的代码也可以正常调用这部分标识符。</p>
+<p><strong>这意味着，在你的C++代码中，所有暴露给C语言调用的接口应该被包含于<code>extern "C"</code>中。</strong></p>
+<p><strong>对于使用C语言开发的库，如果需要被C++调用，那么在C++代码中就需要被以C的方式声明。</strong></p>
+<p>为了支持这一点实际上并不难，开发者完全可以利用宏来解决这一点。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> _A_H</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> _A_H</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> __cplusplus</span></span><br><span class="line"><span class="keyword">extern</span> <span class="string">&quot;C&quot;</span>&#123;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span> <span class="comment">/* __cplusplus__ */</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdint.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;math.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="comment">/* some code here */</span></span><br><span class="line">&#125; A;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">foo</span><span class="params">(<span class="type">int</span>)</span>;</span><br><span class="line"><span class="type">void</span> <span class="title function_">bar</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> __cplusplus</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span> <span class="comment">/* __cplusplus__ */</span></span></span><br><span class="line">    </span><br><span class="line"><span class="meta">#<span class="keyword">endif</span> <span class="comment">/* _A_H */</span></span></span><br></pre></td></tr></table></figure>
+<p>我们在一个经典的头文件中加入了<code>__cplusplus</code>控制编译的<code>extern "C"</code>块。</p>
+<p>需要知道这样一个事实——C++源文件会在自己的文件中隐式地定义一个宏<code>__cplusplus</code>。也就是说，当这份头文件被C++源文件包含时，<code>extern "C"</code>就会被加入头文件中参与编译。</p>
+<p>我们可以考察如果没有<code>extern "C"</code>会产生什么后果：</p>
+<p>假设我们有一个库A，有两个文件：<code>A.h</code>和<code>A.c</code>。.h头文件中含有库A中的函数声明和一些类型定义，.c中有这些函数的实现。注意，源文件是.c格式的，这里所有的符号都不会经过名称修饰，例如<code>foo</code>的符号应该就是<code>foo</code>。</p>
+<p>现在，我们写了一份<code>main.cpp</code>文件，其中包含了<code>A.h</code>，于是<code>A.h</code>中声明的所有符号都会经过名称修饰。</p>
+<p>不妨假设<code>main.cpp</code>调用了<code>foo(1)</code>，那么经过名称修饰后，其符号可以认为是<code>foo(int)</code>。</p>
+<p>于是链接器会去寻找<code>foo(int)</code>的实现，关联到<code>main.cpp</code>上，但是由于<code>A.c</code>是按照C格式被编译，其中的实现所有的符号都没有经过修饰，那么链接器就无法寻找到<code>foo(int)</code>——因为实际上它的实现的符号是<code>foo</code>。这就是链接器报错<code>undefined reference</code>的原因之一。</p>
+<p>所以，在C实现的库的头文件中加入<code>extern "C"</code>块往往是必要的。</p>
+<p><strong><code>extern "C"</code>是C++关键字，纯C环境中不存在这个关键字，因此需要被包含于条件编译块中。</strong></p>
+<p>除此之外，对于嵌入式平台来说，如我们常用的STM32，它提供了启动时的<code>statup.s</code>，用汇编描述了启动流程，做了必要的初始化，引用函数构成向量表，如复位处理、硬错误处理、中断服务函数等。它负责将这些函数放到一个正确的地址上，以便MCU自动调用这些函数。</p>
+<p><strong>因此，这些函数也应该确保将被按照以C方式被声明。你可以简单地认为，<code>startup.s</code>中的所有引用的函数都应该被按照C的方式被声明。</strong></p>
+<p>以下给出了F405的向量表的一部分，具体可以参考CubeMX自动生成的startup.s</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">g_pfnVectors:</span><br><span class="line">  .word  _estack</span><br><span class="line">  .word  Reset_Handler</span><br><span class="line"></span><br><span class="line">  .word  NMI_Handler</span><br><span class="line">  .word  HardFault_Handler</span><br><span class="line">  .word  MemManage_Handler</span><br><span class="line">  .word  BusFault_Handler</span><br><span class="line">  .word  UsageFault_Handler</span><br><span class="line">  .word  0</span><br><span class="line">  .word  0</span><br><span class="line">  .word  0</span><br><span class="line">  .word  0</span><br><span class="line">  .word  SVC_Handler</span><br><span class="line">  .word  DebugMon_Handler</span><br><span class="line">  .word  0</span><br><span class="line">  .word  PendSV_Handler</span><br><span class="line">  .word  SysTick_Handler</span><br><span class="line">  </span><br><span class="line">  /* External Interrupts */</span><br><span class="line">  .word     WWDG_IRQHandler                   /* Window WatchDog              */                                        </span><br><span class="line">  .word     PVD_IRQHandler                    /* PVD through EXTI Line detection */                        </span><br><span class="line">  .word     TAMP_STAMP_IRQHandler             /* Tamper and TimeStamps through the EXTI line */            </span><br><span class="line">  .word     RTC_WKUP_IRQHandler               /* RTC Wakeup through the EXTI line */                      </span><br><span class="line">  .word     FLASH_IRQHandler                  /* FLASH                        */                                          </span><br><span class="line">  .word     RCC_IRQHandler                    /* RCC                          */                                            </span><br><span class="line">  .word     EXTI0_IRQHandler                  /* EXTI Line0                   */                        </span><br><span class="line">  .word     EXTI1_IRQHandler                  /* EXTI Line1                   */                          </span><br><span class="line">  .word     EXTI2_IRQHandler                  /* EXTI Line2                   */                          </span><br><span class="line">  .word     EXTI3_IRQHandler                  /* EXTI Line3                   */                          </span><br><span class="line">  .word     EXTI4_IRQHandler                  /* EXTI Line4                   */                          </span><br><span class="line">  .word     DMA1_Stream0_IRQHandler           /* DMA1 Stream 0                */                  </span><br><span class="line">  .word     DMA1_Stream1_IRQHandler           /* DMA1 Stream 1                */                   </span><br><span class="line">  .word     DMA1_Stream2_IRQHandler           /* DMA1 Stream 2                */                   </span><br><span class="line">  .word     DMA1_Stream3_IRQHandler           /* DMA1 Stream 3                */                   </span><br><span class="line">  .word     DMA1_Stream4_IRQHandler           /* DMA1 Stream 4                */                   </span><br><span class="line">  .word     DMA1_Stream5_IRQHandler           /* DMA1 Stream 5                */                   </span><br><span class="line">  .word     DMA1_Stream6_IRQHandler           /* DMA1 Stream 6                */                   </span><br><span class="line">  .word     ADC_IRQHandler                    /* ADC1, ADC2 and ADC3s         */                   </span><br><span class="line">  .word     CAN1_TX_IRQHandler                /* CAN1 TX                      */                         </span><br><span class="line">  .word     CAN1_RX0_IRQHandler               /* CAN1 RX0                     */                          </span><br><span class="line">  .word     CAN1_RX1_IRQHandler               /* CAN1 RX1                     */                          </span><br><span class="line">  .word     CAN1_SCE_IRQHandler               /* CAN1 SCE                     */                          </span><br><span class="line">  .word     EXTI9_5_IRQHandler                /* External Line[9:5]s          */                          </span><br><span class="line">  .word     TIM1_BRK_TIM9_IRQHandler          /* TIM1 Break and TIM9          */         </span><br><span class="line">  .word     TIM1_UP_TIM10_IRQHandler          /* TIM1 Update and TIM10        */         </span><br><span class="line">  .word     TIM1_TRG_COM_TIM11_IRQHandler     /* TIM1 Trigger and Commutation and TIM11 */</span><br><span class="line">  .word     TIM1_CC_IRQHandler                /* TIM1 Capture Compare         */                          </span><br><span class="line">  .word     TIM2_IRQHandler                   /* TIM2                         */                   </span><br><span class="line">  .word     TIM3_IRQHandler                   /* TIM3                         */                   </span><br><span class="line">  .word     TIM4_IRQHandler                   /* TIM4                         */                   </span><br><span class="line">  .word     I2C1_EV_IRQHandler                /* I2C1 Event                   */                          </span><br><span class="line">  .word     I2C1_ER_IRQHandler                /* I2C1 Error                   */                          </span><br><span class="line">  .word     I2C2_EV_IRQHandler                /* I2C2 Event                   */                          </span><br><span class="line">  .word     I2C2_ER_IRQHandler                /* I2C2 Error                   */                            </span><br><span class="line">  .word     SPI1_IRQHandler                   /* SPI1                         */                   </span><br><span class="line">  .word     SPI2_IRQHandler                   /* SPI2                         */                   </span><br><span class="line">  .word     USART1_IRQHandler                 /* USART1                       */                   </span><br><span class="line">  .word     USART2_IRQHandler                 /* USART2                       */                   </span><br><span class="line">  .word     USART3_IRQHandler                 /* USART3                       */                   </span><br><span class="line">  .word     EXTI15_10_IRQHandler              /* External Line[15:10]s        */                          </span><br><span class="line">  .word     RTC_Alarm_IRQHandler              /* RTC Alarm (A and B) through EXTI Line */                 </span><br><span class="line">  .word     OTG_FS_WKUP_IRQHandler            /* USB OTG FS Wakeup through EXTI line */                       </span><br><span class="line">  .word     TIM8_BRK_TIM12_IRQHandler         /* TIM8 Break and TIM12         */         </span><br><span class="line">  .word     TIM8_UP_TIM13_IRQHandler          /* TIM8 Update and TIM13        */         </span><br><span class="line">  .word     TIM8_TRG_COM_TIM14_IRQHandler     /* TIM8 Trigger and Commutation and TIM14 */</span><br><span class="line">  .word     TIM8_CC_IRQHandler                /* TIM8 Capture Compare         */                          </span><br><span class="line">  .word     DMA1_Stream7_IRQHandler           /* DMA1 Stream7                 */                          </span><br><span class="line">  .word     FSMC_IRQHandler                   /* FSMC                         */                   </span><br><span class="line">  .word     SDIO_IRQHandler                   /* SDIO                         */                   </span><br><span class="line">  .word     TIM5_IRQHandler                   /* TIM5                         */                   </span><br><span class="line">  .word     SPI3_IRQHandler                   /* SPI3                         */                   </span><br><span class="line">  .word     UART4_IRQHandler                  /* UART4                        */                   </span><br><span class="line">  .word     UART5_IRQHandler                  /* UART5                        */                   </span><br><span class="line">  .word     TIM6_DAC_IRQHandler               /* TIM6 and DAC1&amp;2 underrun errors */                   </span><br><span class="line">  .word     TIM7_IRQHandler                   /* TIM7                         */</span><br><span class="line">  .word     DMA2_Stream0_IRQHandler           /* DMA2 Stream 0                */                   </span><br><span class="line">  .word     DMA2_Stream1_IRQHandler           /* DMA2 Stream 1                */                   </span><br><span class="line">  .word     DMA2_Stream2_IRQHandler           /* DMA2 Stream 2                */                   </span><br><span class="line">  .word     DMA2_Stream3_IRQHandler           /* DMA2 Stream 3                */                   </span><br><span class="line">  .word     DMA2_Stream4_IRQHandler           /* DMA2 Stream 4                */                   </span><br><span class="line">  .word     0                                 /* Reserved                     */                   </span><br><span class="line">  .word     0                                 /* Reserved                     */                     </span><br><span class="line">  .word     CAN2_TX_IRQHandler                /* CAN2 TX                      */                          </span><br><span class="line">  .word     CAN2_RX0_IRQHandler               /* CAN2 RX0                     */                          </span><br><span class="line">  .word     CAN2_RX1_IRQHandler               /* CAN2 RX1                     */                          </span><br><span class="line">  .word     CAN2_SCE_IRQHandler               /* CAN2 SCE                     */                          </span><br><span class="line">  .word     OTG_FS_IRQHandler                 /* USB OTG FS                   */                   </span><br><span class="line">  .word     DMA2_Stream5_IRQHandler           /* DMA2 Stream 5                */                   </span><br><span class="line">  .word     DMA2_Stream6_IRQHandler           /* DMA2 Stream 6                */                   </span><br><span class="line">  .word     DMA2_Stream7_IRQHandler           /* DMA2 Stream 7                */                   </span><br><span class="line">  .word     USART6_IRQHandler                 /* USART6                       */                    </span><br><span class="line">  .word     I2C3_EV_IRQHandler                /* I2C3 event                   */                          </span><br><span class="line">  .word     I2C3_ER_IRQHandler                /* I2C3 error                   */                          </span><br><span class="line">  .word     OTG_HS_EP1_OUT_IRQHandler         /* USB OTG HS End Point 1 Out   */                   </span><br><span class="line">  .word     OTG_HS_EP1_IN_IRQHandler          /* USB OTG HS End Point 1 In    */                   </span><br><span class="line">  .word     OTG_HS_WKUP_IRQHandler            /* USB OTG HS Wakeup through EXTI */                         </span><br><span class="line">  .word     OTG_HS_IRQHandler                 /* USB OTG HS                   */                   </span><br><span class="line">  .word     0                                 /* Reserved                         */                   </span><br><span class="line">  .word     0                                 /* Reserved                  */                   </span><br><span class="line">  .word     HASH_RNG_IRQHandler               /* Hash and Rng                 */</span><br><span class="line">  .word     FPU_IRQHandler                    /* FPU                          */</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>CPP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Test</title>
+    <url>//test/</url>
+    <content><![CDATA[<img src="/test/Castorice.png" class="" title="woshiren">
+<span id="more"></span>
+
+<p>asdasda<br>wdajdakwldjawkldwajkld</p>
+<a href="/i-am-human/" title="我是人">我是人</a>]]></content>
+  </entry>
+  <entry>
+    <title>Philia093之迷：她去哪了？</title>
+    <url>//philia093-mystery-where-did-she/</url>
+    <content><![CDATA[<p>昔涟在翁法罗斯的剧情中有多个形象，为了方便讨论，我们给不同的形象分别起一个名字：</p>
+<ol>
+<li>蓝紫色的方块碎片：翁法罗斯之心</li>
+<li>粉色小狗：迷迷</li>
+<li>蓝紫色连衣裙，粉头发少女：Philia093</li>
+<li>白色长裙，粉色长发的成年女性：德谬歌</li>
+</ol>
+<p>基于目前的剧情来看，我们认为所有以这些形态出现的形象均为昔涟本人的不同时期。</p>
+<p>下面我们提出一个问题：如果 Philia093 是“园丁”，翁法罗斯的心是“种子”，当种子长成参天大树（大昔涟）时，那个弯着腰浇水的园丁（Philia093）去哪了？</p>
+<p>我的结论是：Philia093被开拓者以迷迷的形态带出了翁法罗斯。那什么时候回来？其实这个主要是商业问题——在复刻的时候让昔涟回归，也许也能拉一波流水呢。</p>
+<span id="more"></span>
+
+<h2 id="预言的重新解释"><a href="#预言的重新解释" class="headerlink" title="预言的重新解释"></a>预言的重新解释</h2><p>“汝将收梢于花开之时，一如终结诞下起始”是属于昔涟的预言。</p>
+<p>怎么理解这句预言？</p>
+<p>只要过完剧情，很难不理解到这一层：花开之时——英雄们击败了铁墓，世界迎来了新生的那一刻。这是故事的高潮，是希望绽放的瞬间。</p>
+<p>所谓收梢于花开之时，就是德谬歌在胜利的一刻选择留在过去，固定因果，用自己的终结换来其他人未来的起始。更进一步地，德谬歌耗尽力量化为Philia093，以德谬歌的终结诞下Philia093的起始。</p>
+<p>这是一种比较直白的理解，正确但不足够。实际上，这则预言是一种双关。</p>
+<p>如果说德谬歌回到过去，成为了Philia093，那么昔涟并没有“终结”，她只是变成了Philia093。而来古士在剧情中亲口说到：“Philia093完成了最后一次牺牲，随后就此消散。”，换而言之，昔涟真正的终点是作为Philia093消散。</p>
+<p>如果我们这样理解终结，那么预言的含义就会有另一种解释了：花开之时指的是懵懂的翁法罗斯之心终于成熟，成长并化作了德谬歌。</p>
+<p>所谓的收梢于花开之时，则是指Philia093在德谬歌成熟的一刻从此消散，由德谬歌继承她的名字和记忆，用Philia093的终结换取了德谬歌的起始。</p>
+<p>事实上剧情中对这个含义的表达可能比想象中要更加直白——因为这句预言正是Philia093告诉德谬歌的，在这一段剧情中，德谬歌就被称作“记忆的花”，甚至在对话中也直接说了出来。</p>
+<img src="/philia093-mystery-where-did-she/image-20251129181057020.png" class="" title="游戏中对预言的解释">
+
+<p>这样，Philia093和德谬歌的故事就形成了一个完整的闭环。</p>
+<h2 id="关键的矛盾：谁经历了三千万次轮回？"><a href="#关键的矛盾：谁经历了三千万次轮回？" class="headerlink" title="关键的矛盾：谁经历了三千万次轮回？"></a>关键的矛盾：谁经历了三千万次轮回？</h2><p>既然来古士已经说Philia093完成最后牺牲，并就此消散，那么为什么我说Philia093被开拓者以迷迷的形态带出了翁法罗斯呢？</p>
+<img src="/philia093-mystery-where-did-she/image-20251129171715414.png" class="" title="永劫回归时的幻影">
+
+<p>在3.4版本“永劫回归”的过程中一个名为“往昔的涟漪”的迷迷幻影，对开拓者说了这样一段话：</p>
+<blockquote>
+<p>“在三千万个昔涟中，人家可是第一个，也是唯一一个等到你的昔涟呢！” </p>
+</blockquote>
+<p>这位“往昔的涟漪”，究竟是德谬歌，还是Philia093？</p>
+<p>出于思维的惯性，我们可能会认为这是此前以迷迷形态陪伴在我们身边的德谬歌。但是这样会引入一个问题：幻影宣称她是三千万个昔涟中唯一一个等到开拓者的昔涟，可是翁法罗斯的心只是在笼子里听Philia093的故事，而成长为德谬歌后，又只是作为迷迷跟随在我们的身边，从不曾参加过永劫回归，何来三千万个昔涟的说法？她确实见过三千万个昔涟，可她不是三千万个昔涟之一，而且此时的德谬歌应该仍未恢复完整的记忆，她根本不记得三千万个昔涟的事 （在3.7彻底变为卡池形象后，她才恢复了这段记忆）。</p>
+<p>答案显而易见了，毫无疑问地，这是Philia093.</p>
+<p>因为Philia093真的参与过三千万次永劫回归，她确实是那三千万个昔涟之一，她也确实是唯一一个等到开拓者的昔涟。</p>
+<p>而这样解释，可以和来古士的说法相互印证。Philia093确实消散了，不再存在于翁法罗斯之中，但是Philia093并不是死去了，而是化作记忆与开拓者合为一体了。</p>
+<h2 id="时间线证据：两个“迷迷”"><a href="#时间线证据：两个“迷迷”" class="headerlink" title="时间线证据：两个“迷迷”"></a>时间线证据：两个“迷迷”</h2><p>然而，上面的猜测在逻辑链条上仍有缺失的部分。即Philia093怎么会莫名其妙地在永劫回归时出现在开拓者的心识中呢？开拓者从降落在翁法罗斯就从未与Philia093接触过，而开拓者第一次与德谬歌的见面在欧洛尼斯的列车幻境之中，在那之后，与开拓者一同冒险的所有昔涟的形象均是德谬歌，而非Philia093。</p>
+<p>谜底实际上就藏在谜面上——“开拓者第一次与德谬歌的见面在欧洛尼斯的列车幻境之中。”</p>
+<p>剧情中反复地强调开拓者第一次与德谬歌的见面是在欧洛尼斯的幻境之中，这也与CG动画的表现相同。</p>
+<img src="/philia093-mystery-where-did-she/image-20251129174741217.png" class="" title="有关初遇的剧情梗概">
+
+<img src="/philia093-mystery-where-did-she/image-20251129174850096.png" class="" title="昔涟对初遇的时刻的描述">
+
+<p>那么问题来了，迷迷这个形象第一次出场是什么时候？并不是列车幻境，而是天谴之矛击落列车后，在命运重渊中的第一道门前开拓者就见到了迷迷。随后，我们第一次在私人浴宫的睡梦中又一次看到了迷迷的幻影。</p>
+<img src="/philia093-mystery-where-did-she/image-20251129175743018.png" class="" title="在私人浴宫休息时见到迷迷的情景">
+
+<p>如果说德谬歌与开拓者在列车的幻境中初次见面，那么列车被击落后见到的迷迷是谁？她一定是昔涟，但她又不是德谬歌，那么她只能是Philia093. </p>
+<p>Philia093先是以蓝紫色连衣裙的形态参与永劫回归，并喂养翁法罗斯的心，在开拓者到来后，她将名字送给德谬歌。可是剧情中似乎没有说，如果德谬歌化作了迷迷在列车中与我们相遇，那Philia093去哪了？</p>
+<p>如果我们认为命运重渊的迷迷是Philia093，那么有没有什么直接的证据可以佐证这一点？</p>
+<p>在3.7主线剧情的最末尾，似乎很无厘头地插入了一段迷迷视角的剧情，她听到了列车坠落的声音，决定前去看看情况，随后便是3.0剧情的开始——开拓者与迷迷的“初次见面”。</p>
+<img src="/philia093-mystery-where-did-she/image-20251129181637036.png" class="" title="结局迷迷视角的剧情梗概">
+
+<p>剧情梗概是这样描述的，我们一定不能认为这是初次见面，因为这是明面上的事实。如果这真的是初次见面，这个问句有出现的必要吗？</p>
+<p>那如果是久别重逢，那么我们将这个迷迷视为Philia093就很合理了——这当然是久别重逢了，德谬歌与开拓者一同历经冒险后击败了铁墓，化作Philia093，三千万次轮回之后才再次等到开拓者。</p>
+<p>于是，我们合情推断出开拓者与Philia093最早是在命运重渊中见面，自此之后一直寄生在开拓者体内，并且尝试恢复完整的记忆，在历经一次完整的逐火之旅后与开拓者合为一体，随后被带出了翁法罗斯。</p>
+<h2 id="为什么是迷迷？"><a href="#为什么是迷迷？" class="headerlink" title="为什么是迷迷？"></a>为什么是迷迷？</h2><p>为什么是迷迷的形态？</p>
+<p>这个问题反而是简单的，因为德谬歌形态的昔涟已经达到了至少令使级别的实力（实际上可能远不止）。</p>
+<ul>
+<li>如果要昔涟直接上车，昔涟过分强大的实力会很干扰后续剧情，因此必须想办法削弱。</li>
+<li>如果让昔涟以人形态参加开拓，那么列车的小孩三人组变成四个人，运营前期已经构建了三人组概念的情况下，额外添加成员需要谨慎。</li>
+</ul>
+<p>如果让昔涟以迷迷的形态上车，那么游戏性和剧情上实现了一定程度的和谐。</p>
+<ol>
+<li>迷迷形态的昔涟不具有超强的实力，战力问题得以解决；</li>
+<li>列车三人组的概念没有被破坏，仍然是三个人，只是开拓者多了一个忆灵，不会喧宾夺主；</li>
+<li>德谬歌离开后开拓者实际上失去了忆灵，如果以迷迷的形态回归，那么开拓者正常使用记忆命途就得到解释了；</li>
+<li>迷迷-&gt;小昔涟-&gt;大昔涟是德谬歌的形态进化路线，而Philia093失去力量之后退化成迷迷，是合情合理的表现。</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>Game</tag>
+        <tag>崩坏：星穹铁道</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>《常轨脱离Creative》——天使降临我身边</title>
-    <url>/2024/02/25/%E3%80%8A%E5%B8%B8%E8%BD%A8%E8%84%B1%E7%A6%BBCreative%E3%80%8B%E2%80%94%E2%80%94%E5%A4%A9%E4%BD%BF%E9%99%8D%E4%B8%B4%E6%88%91%E8%BA%AB%E8%BE%B9/</url>
+    <url>//breaking-away-creative-angels-come/</url>
     <content><![CDATA[<p>我对GalGame的接触不多，并不能算是圈子中的资深玩家——没有玩过几部经典的作品，仅有的游玩经验也只有《美少女万华镜》、《恋爱我就借走了》等一些比较有名的作品浅尝辄止的体验。</p>
 <p>第一次听说《常轨脱离》是在知乎上的某个回答中，看到了一张妃爱的游戏CG。初看觉得非常惊艳，于是上网搜索了一会，最后在春节Steam打折时入了本作，并且开始了游玩。</p>
-<p>既然是为了妃爱而来，自然首先选择了妃爱线。不过，在体验共通线的过程中，我却对娇小可爱的锦明日海产生了兴趣。于是在结束了妃爱线后，我头一次在GalGame中尝试了第二条线路——之前的游玩经验中，不知出于何种原因，我都只推了一条线就没有再玩了。凭借着自己的感觉，很成功地进入了锦明日海的个人线，充实地体验了剧情后，达成了结局”天使降临我身边“。<img src="https://raw.githubusercontent.com/nanjo712/PicGoRepo/master/image-20240225213231159.png" alt="image-20240225213231159"></p>
+<p>既然是为了妃爱而来，自然首先选择了妃爱线。不过，在体验共通线的过程中，我却对娇小可爱的锦明日海产生了兴趣。于是在结束了妃爱线后，我头一次在GalGame中尝试了第二条线路——之前的游玩经验中，不知出于何种原因，我都只推了一条线就没有再玩了。凭借着自己的感觉，很成功地进入了锦明日海的个人线，充实地体验了剧情后，达成了结局”天使降临我身边“。<img src="https://raw.githubusercontent.com/nanjo712/PicGoRepo/master/image-20240225213231159.png" class="" alt="image-20240225213231159"></p>
 <p>可以说，本线的剧情很好地击穿了我内心的防波堤，也因此我提笔写下这篇文章，记录本人游玩的感想。</p>
 <p>个人文笔比较差，请读者见谅。</p>
 <span id="more"></span>
@@ -148,13 +299,15 @@
 <p>到明日海家后，和泉得知是直播平台封禁了雪景四季（锦明日海的VTuber账号）的直播间，在联系运营之后尽管并不知道触犯了什么规则，但是得知需要一段时间才能解封。为了保障雪景四季的人气，和泉与明日海商讨决定要用视频的形式代替直播，作为直播间封禁期间的过渡活动。</p>
 <p>除此之外，和泉还得知明日海收到V字势公司（以下简称V司）邀请。二人讨论后，认为如果有专业的公司运营和宣传渠道，不仅可以减少类似这次的封禁事件，也可以取得更多的资源。因此明日海决定与V司合作。</p>
 <p>为了帮助明日海，这一段时间里和泉常常到明日海家中帮忙。在这一过程中，二人的感情迅速升温，最后以明日海的告白开始，二人正式成为恋人。</p>
-<p><img src="https://raw.githubusercontent.com/nanjo712/PicGoRepo/master/image-20240225214851024.png" alt="忘了截图了，拿一张CG将就看一下"></p>
+<img src="https://raw.githubusercontent.com/nanjo712/PicGoRepo/master/image-20240225214851024.png" class="" alt="忘了截图了，拿一张CG将就看一下">
+
 <p>在接下来的相处中，明日海不断打开自己内心的防线，逐渐把自己的过去和盘托出。</p>
 <p>明日海的父母均为有名的音乐家，在这种环境下出生的她爱上了歌唱，但是因为意外的受伤导致喉咙受损，需要休养一段时间，不能唱歌。由于她从小在音乐学校就读，不能唱歌意味着需要落下很多进度，而且也因为不能唱歌而遭人白眼。同龄人的目光刺激到了明日海，她为了证明自己而逞强，强行在喉咙未康复的情况下唱歌，反而导致进一步损伤，因此需要更长时间来治疗，这导致她不得不落下更多的进度。在老师同学和父母的压力下，明日海选择了退学，在休息了一段时间后，转到普通学校就读。</p>
 <p>转到普通学校后，意外又发生了。在一次合唱活动的练习中，她一开口就不小心走音了，因此被同班的男同学嘲笑。自己最喜爱也最为之骄傲的唱歌遭遇了挫折，最终得到了他人的嘲笑。作为音乐家之女的她在歌唱上的屡次失败导致了明日海的彻底破防，因此不敢去上学，不再敢在大众面前以锦明日海的身份唱歌，成为了一个完全的家里蹲。</p>
 <p>但是她仍然没有放弃对唱歌的喜爱，她没有勇气以锦明日海的身份唱歌，她选择自己作曲，使用虚拟歌姬的技术来代替她发声。出生于音乐之家的她自然有着极高的音乐天赋，她作的曲子取得了很大的成就。尽管如此，她仍然希望能够自己唱歌。于是，她委托常盘华乃为自己设计了雪景四季的身份，作为一名虚拟主播开始活动。</p>
 <p>摆脱了音乐家之女锦明日海的身份带来的压力，加上网络为她戴上的面具”雪景四季“，她可以无忧无虑地唱歌了。</p>
-<p><img src="https://raw.githubusercontent.com/nanjo712/PicGoRepo/master/image-20240225222822800.png" alt="雪景四季"></p>
+<img src="https://raw.githubusercontent.com/nanjo712/PicGoRepo/master/image-20240225222822800.png" class="" alt="雪景四季">
+
 <p>当然，这只是逃避现实的一种权宜之计。</p>
 <p>在学生会任期中的最后一项任务文化祭中，学生会需要拿出振奋人心的节目（共通线中镰仓埋的坑）。明日海为了帮助和泉，也希望以此为契机解决自己心中的阴影，提出让自己上台唱歌。囿于过去的阴影，明日海虽有犹豫，但是在和泉的鼓励下，也下定了决心。</p>
 <p>好事总是成双成对。雪景四季的出道演出被V司安排在了VTB的一场盛会——V冲击波（什么b翻译）中进行，运营小姐告知演出时间在文化祭的表演后一天。这是很好的机会，和泉和明日海自然答应了下来。</p>
@@ -173,8 +326,10 @@
 <p>”正是因为踏出了那一步，才有了现在的我自己。“</p>
 <p>”十分荣幸，大家能来听我唱歌，再次感谢各位！“</p>
 </blockquote>
-<p><img src="https://raw.githubusercontent.com/nanjo712/PicGoRepo/master/image-20240225225517881.png" alt="image-20240225225517881"></p>
-<p><img src="https://raw.githubusercontent.com/nanjo712/PicGoRepo/master/image-20240225225718591.png" alt="image-20240225225718591"></p>
+<img src="https://raw.githubusercontent.com/nanjo712/PicGoRepo/master/image-20240225225517881.png" class="" alt="image-20240225225517881">
+
+<img src="https://raw.githubusercontent.com/nanjo712/PicGoRepo/master/image-20240225225718591.png" class="" alt="image-20240225225718591">
+
 <h2 id="个人感受"><a href="#个人感受" class="headerlink" title="个人感受"></a>个人感受</h2><p>之后就是一些碎碎念了。</p>
 <p>玩完明日海线，我感受到的应该是是淡淡的快乐和无尽的憧憬。</p>
 <p>全线聚焦于明日海个人的成长，基本的矛盾在于因为各种压力而导致自己无法上台歌唱，尽管有雪景四季作为另一重身份让她在网络上活动，但是对于有音乐梦想的她来说，以锦明日海的身份上台歌唱才是她最期盼的，在和泉的鼓励下，明日海在文化祭上迈出了重要一步，最终实现了个人的成长。</p>
@@ -195,75 +350,54 @@
       </tags>
   </entry>
   <entry>
-    <title>C/C++混合编程与函数重载</title>
-    <url>/2024/04/23/C-C-%E6%B7%B7%E5%90%88%E7%BC%96%E7%A8%8B%E4%B8%8E%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD/</url>
-    <content><![CDATA[<p>C++相比于C，额外支持了函数重载。</p>
-<p>为了更好地进行C&#x2F;C++混合编程，具体地理解这一机制是必要的。</p>
-<p>考察一个经典的C++程序编译过程，一般来说，这可以被分为四个过程：预编译、编译、汇编、链接。</p>
-<p>函数重载的相关过程主要发生在编译期。</p>
+    <title>OpenOCD-Tools使用文档</title>
+    <url>//openocd-tools-user-manual/</url>
+    <content><![CDATA[<p>OpenOCD Tools是一个将OpenOCD与VSCode集成的小型插件，封装了OpenOCD的烧录和调试操作。</p>
+<p>6.11版本之后的CubeMX引入了对CMake的原生支持，可以直接通过CubeMX直接配置生成CMake工程。</p>
+<p>当前版本该插件仅支持类STM32 MCU的CMake工程。</p>
+<p>功能特性：</p>
+<ul>
+<li>一键烧录调试固件</li>
+<li>自动扫描固件文件</li>
+<li>自动识别MCU，根据选择的调试器生成OpenOCD Config文件</li>
+</ul>
+<p><strong>如有更多的功能需求，请在<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL25hbmpvNzEyL29wZW5vY2QtdG9vbHM=">代码仓库<i class="fa fa-external-link-alt"></i></span>中发起Issue。</strong></p>
 <span id="more"></span>
 
-<h3 id="编译期：重载决议与名称修饰"><a href="#编译期：重载决议与名称修饰" class="headerlink" title="编译期：重载决议与名称修饰"></a>编译期：重载决议与名称修饰</h3><p>除了常规的词法分析等工作，C++在编译期还有一项额外的工作：重载决议。</p>
-<p>重载决议的含义是显而易见的：在所有同名的函数实现中，选择匹配最佳的一个作为实际调用的函数。</p>
-<p>这个过程中的匹配规则是涉及到相当多的规则，对此的讨论可以单开一篇文章，这里不过多涉及</p>
-<p><em>事实上，重载决议的匹配规则设计相当优秀，以至于多数情况下你不需要了解其具体机制也足以让其按照你的设想工作。</em></p>
-<p>也就是说，程序在涉及到重载的部分实际调用的程序，在编译阶段已经被确定。</p>
-<p>注意到这样一个事实：编译器会为所有被定义的标识符（函数、变量）生成实际的符号名称。</p>
-<p>但是重载函数的集合实际上具有相同的名称，为了区分这些函数，C编译器和C++编译器具有不同的行为。</p>
-<p>具体地，对于C编译器来说，所有标识符的实际符号名称往往与标识符本身的名称（函数名、变量名）相同（大多数情况下如此，即使有例外，名称也会非常接近）；对于C++编译器，所有标识符的实际符号名称除了会携带标识符本身的名称之外，还会带有其他的信息，比如参数类型、命名空间等。</p>
-<p>简单来说，对于<code>int add(int a,int b)</code>这样一个函数签名，你可以认为C编译器生成的符号是<code>add()</code>，C++编译器生成的符号是<code>add(int,int)</code>。</p>
-<p>实际情况由于涉及模板、类等问题，会比这个复杂很多。只需要理解一点，C++为每一个函数都生成了独一无二的标识符，同名函数的不同重载形式会被映射到到不同的符号名称上。</p>
-<p>看似同名的函数，其实在编译器眼中并不相同。</p>
-<p><strong>综上所述，我们可以做出这样的总结：编译器为函数的所有重载形式生成不同的符号名称；对于一个函数调用，编译器根据匹配规则决定其实际调用的函数实现，并将原本的函数名转换为对应的符号名称。</strong></p>
-<h3 id="链接期：符号解析"><a href="#链接期：符号解析" class="headerlink" title="链接期：符号解析"></a>链接期：符号解析</h3><p>在代码中使用函数、变量被称为一次引用。为了处理这些引用，这些引用在编译期被替换为符号名称，链接器需要将它们与实际的实现关联起来，这一过程被称为链接。链接的规则是复杂的，但是我们可以先避开复杂的细节，基于下面的假设展开讨论：</p>
+<h2 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h2><p>CMake Tools：为了确保烧录前固件是最新版本，需要调用CMake进行编译。</p>
+<h2 id="界面介绍"><a href="#界面介绍" class="headerlink" title="界面介绍"></a>界面介绍</h2><p>打开一个STM32CubeMX配置的CMake工程，将激活拓展。</p>
+<img src="https://raw.githubusercontent.com/nanjo712/PicGoRepo/master/image-20240728211919585.png" class="" alt="VSCode-侧边栏">
+
 <ul>
-<li>同名的符号会被关联到具体的实现上；</li>
-<li>同名的符号仅有唯一的实现；</li>
+<li>MCU-Family：从IOC文件中读取的MCU族；</li>
+<li>Debugger：选择一个Debugger，目前仅有三个选项stlink、cmsis-dap（dap-link）、jlink；</li>
+<li>CFG File：OpenOCD的配置文件，可以选择自己编写的配置文件，也可以根据MCU-Family和Debugger的设置自动生成；</li>
+<li>Target File：待烧录的固件文件，目前仅支持ELF文件烧录，可以通过CMake构建生成；</li>
+<li>SVD File：描述MCU外设寄存器地址的文件，一般由MCU厂商提供，STM32的SVD文件与CubeProgrammer打包分发。该配置项目可选，未配置该项则会在无外设视图的情况下启动调试；</li>
+<li>Flash：烧录固件；</li>
+<li>Debug：调试固件；</li>
 </ul>
-<p>这两条假设在大多数情况下是正确且直观的，这对于我们理解函数重载的过程已经很足够了。</p>
-<p>事实上，这两条假设保证了链接器选择的唯一性。</p>
-<p>我们逐一讨论每一条假设的意义：</p>
+<h2 id="使用流程"><a href="#使用流程" class="headerlink" title="使用流程"></a>使用流程</h2><ul>
+<li>打开STM32工程，插件自动检测MCU；</li>
+<li>选择使用的调试器，如stlink；</li>
+<li>点击生成CFG文件，在工作区目录下将生成一个openocd.cfg文件；如果需要自定义，可以自行更改该文件，或者点击CFG file选项选择一个CFG文件；</li>
+<li>选择目标文件，点击之后插件将扫描目录内所有ELF文件，选择需要烧录或者调试的固件；</li>
+<li>点击Flash进行烧录，或者点击Debug进行调试</li>
+</ul>
+<h2 id="更好的调试支持"><a href="#更好的调试支持" class="headerlink" title="更好的调试支持"></a>更好的调试支持</h2><p>以下插件可以带来更好的调试体验，用户可以根据需要任意选择，与OpenOCD Tools一起使用。</p>
 <ul>
-<li>假设所有同名的符号不存在一份实现，则会有”undefined reference“错误，即所谓未定义的引用；</li>
-<li>假设同名的符号具有两份相同的实现，则会有”multiple definition“（链接期）或者”redefinition“（编译期）</li>
+<li>Embedded Tools拓展：RTOS视图和外设试图</li>
+<li>RTOS Views：RTOS视图</li>
+<li>Peripheral Viewer：外设视图</li>
 </ul>
-<p>注意到这样一个事实，源代码中同名的函数实际上已经在经过名称修饰后不再同名。所以，每一个函数实际上都具有独一无二的符号名称。可以认为，在链接期时不应该存在同名的符号了。</p>
-<h3 id="实践指导"><a href="#实践指导" class="headerlink" title="实践指导"></a>实践指导</h3><p>C++为了保持语言兼容性，提供了额外的关键字<code>extern &quot;C&quot;&#123; /** some code here **/ &#125;</code>，在这个代码块中所有标识符（函数、变量）的声明都会被按照C的方式被处理，不做任何修饰（所谓按照C的方式被声明）。于是，C的代码也可以正常调用这部分标识符。</p>
-<p><strong>这意味着，在你的C++代码中，所有暴露给C语言调用的接口应该被包含于<code>extern &quot;C&quot;</code>中。</strong></p>
-<p><strong>对于使用C语言开发的库，如果需要被C++调用，那么在C++代码中就需要被以C的方式声明。</strong></p>
-<p>为了支持这一点实际上并不难，开发者完全可以利用宏来解决这一点。</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> _A_H</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> _A_H</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> __cplusplus</span></span><br><span class="line"><span class="keyword">extern</span> <span class="string">&quot;C&quot;</span>&#123;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span> <span class="comment">/* __cplusplus__ */</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdint.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;math.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="comment">/* some code here */</span></span><br><span class="line">&#125; A;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">foo</span><span class="params">(<span class="type">int</span>)</span>;</span><br><span class="line"><span class="type">void</span> <span class="title function_">bar</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> __cplusplus</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span> <span class="comment">/* __cplusplus__ */</span></span></span><br><span class="line">    </span><br><span class="line"><span class="meta">#<span class="keyword">endif</span> <span class="comment">/* _A_H */</span></span></span><br></pre></td></tr></table></figure>
-
-<p>我们在一个经典的头文件中加入了<code>__cplusplus</code>控制编译的<code>extern &quot;C&quot;</code>块。</p>
-<p>需要知道这样一个事实——C++源文件会在自己的文件中隐式地定义一个宏<code>__cplusplus</code>。也就是说，当这份头文件被C++源文件包含时，<code>extern &quot;C&quot;</code>就会被加入头文件中参与编译。</p>
-<p>我们可以考察如果没有<code>extern &quot;C&quot;</code>会产生什么后果：</p>
-<p>假设我们有一个库A，有两个文件：<code>A.h</code>和<code>A.c</code>。.h头文件中含有库A中的函数声明和一些类型定义，.c中有这些函数的实现。注意，源文件是.c格式的，这里所有的符号都不会经过名称修饰，例如<code>foo</code>的符号应该就是<code>foo</code>。</p>
-<p>现在，我们写了一份<code>main.cpp</code>文件，其中包含了<code>A.h</code>，于是<code>A.h</code>中声明的所有符号都会经过名称修饰。</p>
-<p>不妨假设<code>main.cpp</code>调用了<code>foo(1)</code>，那么经过名称修饰后，其符号可以认为是<code>foo(int)</code>。</p>
-<p>于是链接器会去寻找<code>foo(int)</code>的实现，关联到<code>main.cpp</code>上，但是由于<code>A.c</code>是按照C格式被编译，其中的实现所有的符号都没有经过修饰，那么链接器就无法寻找到<code>foo(int)</code>——因为实际上它的实现的符号是<code>foo</code>。这就是链接器报错<code>undefined reference</code>的原因之一。</p>
-<p>所以，在C实现的库的头文件中加入<code>extern &quot;C&quot;</code>块往往是必要的。</p>
-<p><strong><code>extern &quot;C&quot;</code>是C++关键字，纯C环境中不存在这个关键字，因此需要被包含于条件编译块中。</strong></p>
-<p>除此之外，对于嵌入式平台来说，如我们常用的STM32，它提供了启动时的<code>statup.s</code>，用汇编描述了启动流程，做了必要的初始化，引用函数构成向量表，如复位处理、硬错误处理、中断服务函数等。它负责将这些函数放到一个正确的地址上，以便MCU自动调用这些函数。</p>
-<p><strong>因此，这些函数也应该确保将被按照以C方式被声明。你可以简单地认为，<code>startup.s</code>中的所有引用的函数都应该被按照C的方式被声明。</strong></p>
-<p>以下给出了F405的向量表的一部分，具体可以参考CubeMX自动生成的startup.s</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">g_pfnVectors:</span><br><span class="line">  .word  _estack</span><br><span class="line">  .word  Reset_Handler</span><br><span class="line"></span><br><span class="line">  .word  NMI_Handler</span><br><span class="line">  .word  HardFault_Handler</span><br><span class="line">  .word  MemManage_Handler</span><br><span class="line">  .word  BusFault_Handler</span><br><span class="line">  .word  UsageFault_Handler</span><br><span class="line">  .word  0</span><br><span class="line">  .word  0</span><br><span class="line">  .word  0</span><br><span class="line">  .word  0</span><br><span class="line">  .word  SVC_Handler</span><br><span class="line">  .word  DebugMon_Handler</span><br><span class="line">  .word  0</span><br><span class="line">  .word  PendSV_Handler</span><br><span class="line">  .word  SysTick_Handler</span><br><span class="line">  </span><br><span class="line">  /* External Interrupts */</span><br><span class="line">  .word     WWDG_IRQHandler                   /* Window WatchDog              */                                        </span><br><span class="line">  .word     PVD_IRQHandler                    /* PVD through EXTI Line detection */                        </span><br><span class="line">  .word     TAMP_STAMP_IRQHandler             /* Tamper and TimeStamps through the EXTI line */            </span><br><span class="line">  .word     RTC_WKUP_IRQHandler               /* RTC Wakeup through the EXTI line */                      </span><br><span class="line">  .word     FLASH_IRQHandler                  /* FLASH                        */                                          </span><br><span class="line">  .word     RCC_IRQHandler                    /* RCC                          */                                            </span><br><span class="line">  .word     EXTI0_IRQHandler                  /* EXTI Line0                   */                        </span><br><span class="line">  .word     EXTI1_IRQHandler                  /* EXTI Line1                   */                          </span><br><span class="line">  .word     EXTI2_IRQHandler                  /* EXTI Line2                   */                          </span><br><span class="line">  .word     EXTI3_IRQHandler                  /* EXTI Line3                   */                          </span><br><span class="line">  .word     EXTI4_IRQHandler                  /* EXTI Line4                   */                          </span><br><span class="line">  .word     DMA1_Stream0_IRQHandler           /* DMA1 Stream 0                */                  </span><br><span class="line">  .word     DMA1_Stream1_IRQHandler           /* DMA1 Stream 1                */                   </span><br><span class="line">  .word     DMA1_Stream2_IRQHandler           /* DMA1 Stream 2                */                   </span><br><span class="line">  .word     DMA1_Stream3_IRQHandler           /* DMA1 Stream 3                */                   </span><br><span class="line">  .word     DMA1_Stream4_IRQHandler           /* DMA1 Stream 4                */                   </span><br><span class="line">  .word     DMA1_Stream5_IRQHandler           /* DMA1 Stream 5                */                   </span><br><span class="line">  .word     DMA1_Stream6_IRQHandler           /* DMA1 Stream 6                */                   </span><br><span class="line">  .word     ADC_IRQHandler                    /* ADC1, ADC2 and ADC3s         */                   </span><br><span class="line">  .word     CAN1_TX_IRQHandler                /* CAN1 TX                      */                         </span><br><span class="line">  .word     CAN1_RX0_IRQHandler               /* CAN1 RX0                     */                          </span><br><span class="line">  .word     CAN1_RX1_IRQHandler               /* CAN1 RX1                     */                          </span><br><span class="line">  .word     CAN1_SCE_IRQHandler               /* CAN1 SCE                     */                          </span><br><span class="line">  .word     EXTI9_5_IRQHandler                /* External Line[9:5]s          */                          </span><br><span class="line">  .word     TIM1_BRK_TIM9_IRQHandler          /* TIM1 Break and TIM9          */         </span><br><span class="line">  .word     TIM1_UP_TIM10_IRQHandler          /* TIM1 Update and TIM10        */         </span><br><span class="line">  .word     TIM1_TRG_COM_TIM11_IRQHandler     /* TIM1 Trigger and Commutation and TIM11 */</span><br><span class="line">  .word     TIM1_CC_IRQHandler                /* TIM1 Capture Compare         */                          </span><br><span class="line">  .word     TIM2_IRQHandler                   /* TIM2                         */                   </span><br><span class="line">  .word     TIM3_IRQHandler                   /* TIM3                         */                   </span><br><span class="line">  .word     TIM4_IRQHandler                   /* TIM4                         */                   </span><br><span class="line">  .word     I2C1_EV_IRQHandler                /* I2C1 Event                   */                          </span><br><span class="line">  .word     I2C1_ER_IRQHandler                /* I2C1 Error                   */                          </span><br><span class="line">  .word     I2C2_EV_IRQHandler                /* I2C2 Event                   */                          </span><br><span class="line">  .word     I2C2_ER_IRQHandler                /* I2C2 Error                   */                            </span><br><span class="line">  .word     SPI1_IRQHandler                   /* SPI1                         */                   </span><br><span class="line">  .word     SPI2_IRQHandler                   /* SPI2                         */                   </span><br><span class="line">  .word     USART1_IRQHandler                 /* USART1                       */                   </span><br><span class="line">  .word     USART2_IRQHandler                 /* USART2                       */                   </span><br><span class="line">  .word     USART3_IRQHandler                 /* USART3                       */                   </span><br><span class="line">  .word     EXTI15_10_IRQHandler              /* External Line[15:10]s        */                          </span><br><span class="line">  .word     RTC_Alarm_IRQHandler              /* RTC Alarm (A and B) through EXTI Line */                 </span><br><span class="line">  .word     OTG_FS_WKUP_IRQHandler            /* USB OTG FS Wakeup through EXTI line */                       </span><br><span class="line">  .word     TIM8_BRK_TIM12_IRQHandler         /* TIM8 Break and TIM12         */         </span><br><span class="line">  .word     TIM8_UP_TIM13_IRQHandler          /* TIM8 Update and TIM13        */         </span><br><span class="line">  .word     TIM8_TRG_COM_TIM14_IRQHandler     /* TIM8 Trigger and Commutation and TIM14 */</span><br><span class="line">  .word     TIM8_CC_IRQHandler                /* TIM8 Capture Compare         */                          </span><br><span class="line">  .word     DMA1_Stream7_IRQHandler           /* DMA1 Stream7                 */                          </span><br><span class="line">  .word     FSMC_IRQHandler                   /* FSMC                         */                   </span><br><span class="line">  .word     SDIO_IRQHandler                   /* SDIO                         */                   </span><br><span class="line">  .word     TIM5_IRQHandler                   /* TIM5                         */                   </span><br><span class="line">  .word     SPI3_IRQHandler                   /* SPI3                         */                   </span><br><span class="line">  .word     UART4_IRQHandler                  /* UART4                        */                   </span><br><span class="line">  .word     UART5_IRQHandler                  /* UART5                        */                   </span><br><span class="line">  .word     TIM6_DAC_IRQHandler               /* TIM6 and DAC1&amp;2 underrun errors */                   </span><br><span class="line">  .word     TIM7_IRQHandler                   /* TIM7                         */</span><br><span class="line">  .word     DMA2_Stream0_IRQHandler           /* DMA2 Stream 0                */                   </span><br><span class="line">  .word     DMA2_Stream1_IRQHandler           /* DMA2 Stream 1                */                   </span><br><span class="line">  .word     DMA2_Stream2_IRQHandler           /* DMA2 Stream 2                */                   </span><br><span class="line">  .word     DMA2_Stream3_IRQHandler           /* DMA2 Stream 3                */                   </span><br><span class="line">  .word     DMA2_Stream4_IRQHandler           /* DMA2 Stream 4                */                   </span><br><span class="line">  .word     0                                 /* Reserved                     */                   </span><br><span class="line">  .word     0                                 /* Reserved                     */                     </span><br><span class="line">  .word     CAN2_TX_IRQHandler                /* CAN2 TX                      */                          </span><br><span class="line">  .word     CAN2_RX0_IRQHandler               /* CAN2 RX0                     */                          </span><br><span class="line">  .word     CAN2_RX1_IRQHandler               /* CAN2 RX1                     */                          </span><br><span class="line">  .word     CAN2_SCE_IRQHandler               /* CAN2 SCE                     */                          </span><br><span class="line">  .word     OTG_FS_IRQHandler                 /* USB OTG FS                   */                   </span><br><span class="line">  .word     DMA2_Stream5_IRQHandler           /* DMA2 Stream 5                */                   </span><br><span class="line">  .word     DMA2_Stream6_IRQHandler           /* DMA2 Stream 6                */                   </span><br><span class="line">  .word     DMA2_Stream7_IRQHandler           /* DMA2 Stream 7                */                   </span><br><span class="line">  .word     USART6_IRQHandler                 /* USART6                       */                    </span><br><span class="line">  .word     I2C3_EV_IRQHandler                /* I2C3 event                   */                          </span><br><span class="line">  .word     I2C3_ER_IRQHandler                /* I2C3 error                   */                          </span><br><span class="line">  .word     OTG_HS_EP1_OUT_IRQHandler         /* USB OTG HS End Point 1 Out   */                   </span><br><span class="line">  .word     OTG_HS_EP1_IN_IRQHandler          /* USB OTG HS End Point 1 In    */                   </span><br><span class="line">  .word     OTG_HS_WKUP_IRQHandler            /* USB OTG HS Wakeup through EXTI */                         </span><br><span class="line">  .word     OTG_HS_IRQHandler                 /* USB OTG HS                   */                   </span><br><span class="line">  .word     0                                 /* Reserved                         */                   </span><br><span class="line">  .word     0                                 /* Reserved                  */                   </span><br><span class="line">  .word     HASH_RNG_IRQHandler               /* Hash and Rng                 */</span><br><span class="line">  .word     FPU_IRQHandler                    /* FPU                          */</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
-
 ]]></content>
       <tags>
-        <tag>C/C++</tag>
+        <tag>嵌入式</tag>
       </tags>
   </entry>
   <entry>
     <title>OpenOCD简明指南</title>
-    <url>/2024/07/28/OpenOCD%E7%AE%80%E6%98%8E%E6%8C%87%E5%8D%97/</url>
+    <url>//concise-guide-openocd/</url>
     <content><![CDATA[<p>OpenOCD（Open On Chip Debugger）是一个开源的嵌入式调试软件，支持多种SoC、FPGA、CPLD和调试器等，提供了一个优秀的抽象层，使得用户可以通过几乎一致的操作对嵌入式工程进行调试。</p>
 <p>本指南仅涉及嵌入式SoC的烧录与调试操作。</p>
 <p>有关FPGA和CPLD的使用笔者暂未探索。</p>
@@ -490,137 +624,6 @@
 ]]></content>
       <tags>
         <tag>嵌入式开发</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>OpenOCD-Tools使用文档</title>
-    <url>/2024/07/28/OpenOCD-Tools%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3/</url>
-    <content><![CDATA[<p>OpenOCD Tools是一个将OpenOCD与VSCode集成的小型插件，封装了OpenOCD的烧录和调试操作。</p>
-<p>6.11版本之后的CubeMX引入了对CMake的原生支持，可以直接通过CubeMX直接配置生成CMake工程。</p>
-<p>当前版本该插件仅支持类STM32 MCU的CMake工程。</p>
-<p>功能特性：</p>
-<ul>
-<li>一键烧录调试固件</li>
-<li>自动扫描固件文件</li>
-<li>自动识别MCU，根据选择的调试器生成OpenOCD Config文件</li>
-</ul>
-<p><strong>如有更多的功能需求，请在<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL25hbmpvNzEyL29wZW5vY2QtdG9vbHM=">代码仓库<i class="fa fa-external-link-alt"></i></span>中发起Issue。</strong></p>
-<span id="more"></span>
-
-<h2 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h2><p>CMake Tools：为了确保烧录前固件是最新版本，需要调用CMake进行编译。</p>
-<h2 id="界面介绍"><a href="#界面介绍" class="headerlink" title="界面介绍"></a>界面介绍</h2><p>打开一个STM32CubeMX配置的CMake工程，将激活拓展。</p>
-<p><img src="https://raw.githubusercontent.com/nanjo712/PicGoRepo/master/image-20240728211919585.png" alt="VSCode-侧边栏"></p>
-<ul>
-<li>MCU-Family：从IOC文件中读取的MCU族；</li>
-<li>Debugger：选择一个Debugger，目前仅有三个选项stlink、cmsis-dap（dap-link）、jlink；</li>
-<li>CFG File：OpenOCD的配置文件，可以选择自己编写的配置文件，也可以根据MCU-Family和Debugger的设置自动生成；</li>
-<li>Target File：待烧录的固件文件，目前仅支持ELF文件烧录，可以通过CMake构建生成；</li>
-<li>SVD File：描述MCU外设寄存器地址的文件，一般由MCU厂商提供，STM32的SVD文件与CubeProgrammer打包分发。该配置项目可选，未配置该项则会在无外设视图的情况下启动调试；</li>
-<li>Flash：烧录固件；</li>
-<li>Debug：调试固件；</li>
-</ul>
-<h2 id="使用流程"><a href="#使用流程" class="headerlink" title="使用流程"></a>使用流程</h2><ul>
-<li>打开STM32工程，插件自动检测MCU；</li>
-<li>选择使用的调试器，如stlink；</li>
-<li>点击生成CFG文件，在工作区目录下将生成一个openocd.cfg文件；如果需要自定义，可以自行更改该文件，或者点击CFG file选项选择一个CFG文件；</li>
-<li>选择目标文件，点击之后插件将扫描目录内所有ELF文件，选择需要烧录或者调试的固件；</li>
-<li>点击Flash进行烧录，或者点击Debug进行调试</li>
-</ul>
-<h2 id="更好的调试支持"><a href="#更好的调试支持" class="headerlink" title="更好的调试支持"></a>更好的调试支持</h2><p>以下插件可以带来更好的调试体验，用户可以根据需要任意选择，与OpenOCD Tools一起使用。</p>
-<ul>
-<li>Embedded Tools拓展：RTOS视图和外设试图</li>
-<li>RTOS Views：RTOS视图</li>
-<li>Peripheral Viewer：外设视图</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>嵌入式</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2026/01/13/Hello-World/</url>
-    <content><![CDATA[<img src="/2026/01/13/Hello-World/20250303191738.png" class="">
-]]></content>
-      <tags>
-        <tag>test</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Philia093之迷：她去哪了？</title>
-    <url>/2026/01/14/Philia093%E4%B9%8B%E8%BF%B7%EF%BC%9A%E5%A5%B9%E5%8E%BB%E5%93%AA%E4%BA%86%EF%BC%9F/</url>
-    <content><![CDATA[<p>昔涟在翁法罗斯的剧情中有多个形象，为了方便讨论，我们给不同的形象分别起一个名字：</p>
-<ol>
-<li>蓝紫色的方块碎片：翁法罗斯之心</li>
-<li>粉色小狗：迷迷</li>
-<li>蓝紫色连衣裙，粉头发少女：Philia093</li>
-<li>白色长裙，粉色长发的成年女性：德谬歌</li>
-</ol>
-<p>基于目前的剧情来看，我们认为所有以这些形态出现的形象均为昔涟本人的不同时期。</p>
-<p>下面我们提出一个问题：如果 Philia093 是“园丁”，翁法罗斯的心是“种子”，当种子长成参天大树（大昔涟）时，那个弯着腰浇水的园丁（Philia093）去哪了？</p>
-<p>我的结论是：Philia093被开拓者以迷迷的形态带出了翁法罗斯。那什么时候回来？其实这个主要是商业问题——在复刻的时候让昔涟回归，也许也能拉一波流水呢。</p>
-<span id="more"></span>
-
-<h2 id="预言的重新解释"><a href="#预言的重新解释" class="headerlink" title="预言的重新解释"></a>预言的重新解释</h2><p>“汝将收梢于花开之时，一如终结诞下起始”是属于昔涟的预言。</p>
-<p>怎么理解这句预言？</p>
-<p>只要过完剧情，很难不理解到这一层：花开之时——英雄们击败了铁墓，世界迎来了新生的那一刻。这是故事的高潮，是希望绽放的瞬间。</p>
-<p>所谓收梢于花开之时，就是德谬歌在胜利的一刻选择留在过去，固定因果，用自己的终结换来其他人未来的起始。更进一步地，德谬歌耗尽力量化为Philia093，以德谬歌的终结诞下Philia093的起始。</p>
-<p>这是一种比较直白的理解，正确但不足够。实际上，这则预言是一种双关。</p>
-<p>如果说德谬歌回到过去，成为了Philia093，那么昔涟并没有“终结”，她只是变成了Philia093。而来古士在剧情中亲口说到：“Philia093完成了最后一次牺牲，随后就此消散。”，换而言之，昔涟真正的终点是作为Philia093消散。</p>
-<p>如果我们这样理解终结，那么预言的含义就会有另一种解释了：花开之时指的是懵懂的翁法罗斯之心终于成熟，成长并化作了德谬歌。</p>
-<p>所谓的收梢于花开之时，则是指Philia093在德谬歌成熟的一刻从此消散，由德谬歌继承她的名字和记忆，用Philia093的终结换取了德谬歌的起始。</p>
-<p>事实上剧情中对这个含义的表达可能比想象中要更加直白——因为这句预言正是Philia093告诉德谬歌的，在这一段剧情中，德谬歌就被称作“记忆的花”，甚至在对话中也直接说了出来。</p>
-<img src="/2026/01/14/Philia093%E4%B9%8B%E8%BF%B7%EF%BC%9A%E5%A5%B9%E5%8E%BB%E5%93%AA%E4%BA%86%EF%BC%9F/image-20251129181057020.png" class="" title="游戏中对预言的解释">
-
-<p>这样，Philia093和德谬歌的故事就形成了一个完整的闭环。</p>
-<h2 id="关键的矛盾：谁经历了三千万次轮回？"><a href="#关键的矛盾：谁经历了三千万次轮回？" class="headerlink" title="关键的矛盾：谁经历了三千万次轮回？"></a>关键的矛盾：谁经历了三千万次轮回？</h2><p>既然来古士已经说Philia093完成最后牺牲，并就此消散，那么为什么我说Philia093被开拓者以迷迷的形态带出了翁法罗斯呢？</p>
-<img src="/2026/01/14/Philia093%E4%B9%8B%E8%BF%B7%EF%BC%9A%E5%A5%B9%E5%8E%BB%E5%93%AA%E4%BA%86%EF%BC%9F/image-20251129171715414.png" class="" title="永劫回归时的幻影">
-
-<p>在3.4版本“永劫回归”的过程中一个名为“往昔的涟漪”的迷迷幻影，对开拓者说了这样一段话：</p>
-<blockquote>
-<p>“在三千万个昔涟中，人家可是第一个，也是唯一一个等到你的昔涟呢！” </p>
-</blockquote>
-<p>这位“往昔的涟漪”，究竟是德谬歌，还是Philia093？</p>
-<p>出于思维的惯性，我们可能会认为这是此前以迷迷形态陪伴在我们身边的德谬歌。但是这样会引入一个问题：幻影宣称她是三千万个昔涟中唯一一个等到开拓者的昔涟，可是翁法罗斯的心只是在笼子里听Philia093的故事，而成长为德谬歌后，又只是作为迷迷跟随在我们的身边，从不曾参加过永劫回归，何来三千万个昔涟的说法？她确实见过三千万个昔涟，可她不是三千万个昔涟之一，而且此时的德谬歌应该仍未恢复完整的记忆，她根本不记得三千万个昔涟的事 （在3.7彻底变为卡池形象后，她才恢复了这段记忆）。</p>
-<p>答案显而易见了，毫无疑问地，这是Philia093.</p>
-<p>因为Philia093真的参与过三千万次永劫回归，她确实是那三千万个昔涟之一，她也确实是唯一一个等到开拓者的昔涟。</p>
-<p>而这样解释，可以和来古士的说法相互印证。Philia093确实消散了，不再存在于翁法罗斯之中，但是Philia093并不是死去了，而是化作记忆与开拓者合为一体了。</p>
-<h2 id="时间线证据：两个“迷迷”"><a href="#时间线证据：两个“迷迷”" class="headerlink" title="时间线证据：两个“迷迷”"></a>时间线证据：两个“迷迷”</h2><p>然而，上面的猜测在逻辑链条上仍有缺失的部分。即Philia093怎么会莫名其妙地在永劫回归时出现在开拓者的心识中呢？开拓者从降落在翁法罗斯就从未与Philia093接触过，而开拓者第一次与德谬歌的见面在欧洛尼斯的列车幻境之中，在那之后，与开拓者一同冒险的所有昔涟的形象均是德谬歌，而非Philia093。</p>
-<p>谜底实际上就藏在谜面上——“开拓者第一次与德谬歌的见面在欧洛尼斯的列车幻境之中。”</p>
-<p>剧情中反复地强调开拓者第一次与德谬歌的见面是在欧洛尼斯的幻境之中，这也与CG动画的表现相同。</p>
-<img src="/2026/01/14/Philia093%E4%B9%8B%E8%BF%B7%EF%BC%9A%E5%A5%B9%E5%8E%BB%E5%93%AA%E4%BA%86%EF%BC%9F/image-20251129174741217.png" class="" title="有关初遇的剧情梗概">
-
-<img src="/2026/01/14/Philia093%E4%B9%8B%E8%BF%B7%EF%BC%9A%E5%A5%B9%E5%8E%BB%E5%93%AA%E4%BA%86%EF%BC%9F/image-20251129174850096.png" class="" title="昔涟对初遇的时刻的描述">
-
-<p>那么问题来了，迷迷这个形象第一次出场是什么时候？并不是列车幻境，而是天谴之矛击落列车后，在命运重渊中的第一道门前开拓者就见到了迷迷。随后，我们第一次在私人浴宫的睡梦中又一次看到了迷迷的幻影。</p>
-<img src="/2026/01/14/Philia093%E4%B9%8B%E8%BF%B7%EF%BC%9A%E5%A5%B9%E5%8E%BB%E5%93%AA%E4%BA%86%EF%BC%9F/image-20251129175743018.png" class="" title="在私人浴宫休息时见到迷迷的情景">
-
-<p>如果说德谬歌与开拓者在列车的幻境中初次见面，那么列车被击落后见到的迷迷是谁？她一定是昔涟，但她又不是德谬歌，那么她只能是Philia093. </p>
-<p>Philia093先是以蓝紫色连衣裙的形态参与永劫回归，并喂养翁法罗斯的心，在开拓者到来后，她将名字送给德谬歌。可是剧情中似乎没有说，如果德谬歌化作了迷迷在列车中与我们相遇，那Philia093去哪了？</p>
-<p>如果我们认为命运重渊的迷迷是Philia093，那么有没有什么直接的证据可以佐证这一点？</p>
-<p>在3.7主线剧情的最末尾，似乎很无厘头地插入了一段迷迷视角的剧情，她听到了列车坠落的声音，决定前去看看情况，随后便是3.0剧情的开始——开拓者与迷迷的“初次见面”。</p>
-<img src="/2026/01/14/Philia093%E4%B9%8B%E8%BF%B7%EF%BC%9A%E5%A5%B9%E5%8E%BB%E5%93%AA%E4%BA%86%EF%BC%9F/image-20251129181637036.png" class="" title="结局迷迷视角的剧情梗概">
-
-<p>剧情梗概是这样描述的，我们一定不能认为这是初次见面，因为这是明面上的事实。如果这真的是初次见面，这个问句有出现的必要吗？</p>
-<p>那如果是久别重逢，那么我们将这个迷迷视为Philia093就很合理了——这当然是久别重逢了，德谬歌与开拓者一同历经冒险后击败了铁墓，化作Philia093，三千万次轮回之后才再次等到开拓者。</p>
-<p>于是，我们合情推断出开拓者与Philia093最早是在命运重渊中见面，自此之后一直寄生在开拓者体内，并且尝试恢复完整的记忆，在历经一次完整的逐火之旅后与开拓者合为一体，随后被带出了翁法罗斯。</p>
-<h2 id="为什么是迷迷？"><a href="#为什么是迷迷？" class="headerlink" title="为什么是迷迷？"></a>为什么是迷迷？</h2><p>为什么是迷迷的形态？</p>
-<p>这个问题反而是简单的，因为德谬歌形态的昔涟已经达到了至少令使级别的实力（实际上可能远不止）。</p>
-<ul>
-<li>如果要昔涟直接上车，昔涟过分强大的实力会很干扰后续剧情，因此必须想办法削弱。</li>
-<li>如果让昔涟以人形态参加开拓，那么列车的小孩三人组变成四个人，运营前期已经构建了三人组概念的情况下，额外添加成员需要谨慎。</li>
-</ul>
-<p>如果让昔涟以迷迷的形态上车，那么游戏性和剧情上实现了一定程度的和谐。</p>
-<ol>
-<li>迷迷形态的昔涟不具有超强的实力，战力问题得以解决；</li>
-<li>列车三人组的概念没有被破坏，仍然是三个人，只是开拓者多了一个忆灵，不会喧宾夺主；</li>
-<li>德谬歌离开后开拓者实际上失去了忆灵，如果以迷迷的形态回归，那么开拓者正常使用记忆命途就得到解释了；</li>
-<li>迷迷-&gt;小昔涟-&gt;大昔涟是德谬歌的形态进化路线，而Philia093失去力量之后退化成迷迷，是合情合理的表现。</li>
-</ol>
-]]></content>
-      <tags>
-        <tag>Game</tag>
-        <tag>崩坏：星穹铁道</tag>
       </tags>
   </entry>
 </search>

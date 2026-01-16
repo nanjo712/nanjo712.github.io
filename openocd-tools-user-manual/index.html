@@ -22,28 +22,30 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"nanjo712.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.19.2","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":true,"nav":null,"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="https://nanjo712.github.io/2026/01/13/Hello-World/index.html">
+    <meta name="description" content="OpenOCD Tools是一个将OpenOCD与VSCode集成的小型插件，封装了OpenOCD的烧录和调试操作。 6.11版本之后的CubeMX引入了对CMake的原生支持，可以直接通过CubeMX直接配置生成CMake工程。 当前版本该插件仅支持类STM32 MCU的CMake工程。 功能特性：  一键烧录调试固件 自动扫描固件文件 自动识别MCU，根据选择的调试器生成OpenOCD Con">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenOCD-Tools使用文档">
+<meta property="og:url" content="https://nanjo712.github.io/openocd-tools-user-manual/index.html">
 <meta property="og:site_name" content="The Vault of woshiren">
+<meta property="og:description" content="OpenOCD Tools是一个将OpenOCD与VSCode集成的小型插件，封装了OpenOCD的烧录和调试操作。 6.11版本之后的CubeMX引入了对CMake的原生支持，可以直接通过CubeMX直接配置生成CMake工程。 当前版本该插件仅支持类STM32 MCU的CMake工程。 功能特性：  一键烧录调试固件 自动扫描固件文件 自动识别MCU，根据选择的调试器生成OpenOCD Con">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://nanjo712.github.io/2026/01/13/Hello-World/20250303191738.png">
-<meta property="article:published_time" content="2026-01-13T14:12:23.000Z">
-<meta property="article:modified_time" content="2026-01-13T14:25:30.067Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/nanjo712/PicGoRepo/master/image-20240728211919585.png">
+<meta property="article:published_time" content="2024-07-28T12:38:16.000Z">
+<meta property="article:modified_time" content="2026-01-16T06:17:17.655Z">
 <meta property="article:author" content="woshiren">
-<meta property="article:tag" content="test">
+<meta property="article:tag" content="嵌入式">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://nanjo712.github.io/2026/01/13/Hello-World/20250303191738.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/nanjo712/PicGoRepo/master/image-20240728211919585.png">
 
 
-<link rel="canonical" href="https://nanjo712.github.io/2026/01/13/Hello-World/">
+<link rel="canonical" href="https://nanjo712.github.io/openocd-tools-user-manual/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://nanjo712.github.io/2026/01/13/Hello-World/","path":"2026/01/13/Hello-World/","title":"Hello World"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://nanjo712.github.io/openocd-tools-user-manual/","path":"/openocd-tools-user-manual/","title":"OpenOCD-Tools使用文档"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Hello World | The Vault of woshiren</title>
+<title>OpenOCD-Tools使用文档 | The Vault of woshiren</title>
   
 
 
@@ -130,7 +132,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -143,6 +145,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%9D%E8%B5%96"><span class="nav-number">1.</span> <span class="nav-text">依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%95%8C%E9%9D%A2%E4%BB%8B%E7%BB%8D"><span class="nav-number">2.</span> <span class="nav-text">界面介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%B5%81%E7%A8%8B"><span class="nav-number">3.</span> <span class="nav-text">使用流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9B%B4%E5%A5%BD%E7%9A%84%E8%B0%83%E8%AF%95%E6%94%AF%E6%8C%81"><span class="nav-number">4.</span> <span class="nav-text">更好的调试支持</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -163,7 +166,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -198,7 +201,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://nanjo712.github.io/2026/01/13/Hello-World/">
+    <link itemprop="mainEntityOfPage" href="https://nanjo712.github.io/openocd-tools-user-manual/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://raw.githubusercontent.com/nanjo712/PicGoRepo/master/47129342.png">
@@ -211,12 +214,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Hello World | The Vault of woshiren">
+      <meta itemprop="name" content="OpenOCD-Tools使用文档 | The Vault of woshiren">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Hello World
+          OpenOCD-Tools使用文档
         </h1>
 
         <div class="post-meta-container">
@@ -226,9 +229,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2026-01-13 22:12:23 / 修改时间：22:25:30" itemprop="dateCreated datePublished" datetime="2026-01-13T22:12:23+08:00">2026-01-13</time>
+      <time title="创建时间：2024-07-28 20:38:16" itemprop="dateCreated datePublished" datetime="2024-07-28T20:38:16+08:00">2024-07-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-01-16 14:17:17" itemprop="dateModified" datetime="2026-01-16T14:17:17+08:00">2026-01-16</time>
     </span>
 
   
@@ -240,7 +249,44 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><img src="/2026/01/13/Hello-World/20250303191738.png" class="">
+    <div class="post-body" itemprop="articleBody"><p>OpenOCD Tools是一个将OpenOCD与VSCode集成的小型插件，封装了OpenOCD的烧录和调试操作。</p>
+<p>6.11版本之后的CubeMX引入了对CMake的原生支持，可以直接通过CubeMX直接配置生成CMake工程。</p>
+<p>当前版本该插件仅支持类STM32 MCU的CMake工程。</p>
+<p>功能特性：</p>
+<ul>
+<li>一键烧录调试固件</li>
+<li>自动扫描固件文件</li>
+<li>自动识别MCU，根据选择的调试器生成OpenOCD Config文件</li>
+</ul>
+<p><strong>如有更多的功能需求，请在<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL25hbmpvNzEyL29wZW5vY2QtdG9vbHM=">代码仓库<i class="fa fa-external-link-alt"></i></span>中发起Issue。</strong></p>
+<span id="more"></span>
+
+<h2 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h2><p>CMake Tools：为了确保烧录前固件是最新版本，需要调用CMake进行编译。</p>
+<h2 id="界面介绍"><a href="#界面介绍" class="headerlink" title="界面介绍"></a>界面介绍</h2><p>打开一个STM32CubeMX配置的CMake工程，将激活拓展。</p>
+<img src="https://raw.githubusercontent.com/nanjo712/PicGoRepo/master/image-20240728211919585.png" class="" alt="VSCode-侧边栏">
+
+<ul>
+<li>MCU-Family：从IOC文件中读取的MCU族；</li>
+<li>Debugger：选择一个Debugger，目前仅有三个选项stlink、cmsis-dap（dap-link）、jlink；</li>
+<li>CFG File：OpenOCD的配置文件，可以选择自己编写的配置文件，也可以根据MCU-Family和Debugger的设置自动生成；</li>
+<li>Target File：待烧录的固件文件，目前仅支持ELF文件烧录，可以通过CMake构建生成；</li>
+<li>SVD File：描述MCU外设寄存器地址的文件，一般由MCU厂商提供，STM32的SVD文件与CubeProgrammer打包分发。该配置项目可选，未配置该项则会在无外设视图的情况下启动调试；</li>
+<li>Flash：烧录固件；</li>
+<li>Debug：调试固件；</li>
+</ul>
+<h2 id="使用流程"><a href="#使用流程" class="headerlink" title="使用流程"></a>使用流程</h2><ul>
+<li>打开STM32工程，插件自动检测MCU；</li>
+<li>选择使用的调试器，如stlink；</li>
+<li>点击生成CFG文件，在工作区目录下将生成一个openocd.cfg文件；如果需要自定义，可以自行更改该文件，或者点击CFG file选项选择一个CFG文件；</li>
+<li>选择目标文件，点击之后插件将扫描目录内所有ELF文件，选择需要烧录或者调试的固件；</li>
+<li>点击Flash进行烧录，或者点击Debug进行调试</li>
+</ul>
+<h2 id="更好的调试支持"><a href="#更好的调试支持" class="headerlink" title="更好的调试支持"></a>更好的调试支持</h2><p>以下插件可以带来更好的调试体验，用户可以根据需要任意选择，与OpenOCD Tools一起使用。</p>
+<ul>
+<li>Embedded Tools拓展：RTOS视图和外设试图</li>
+<li>RTOS Views：RTOS视图</li>
+<li>Peripheral Viewer：外设视图</li>
+</ul>
 
     </div>
 
@@ -258,7 +304,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://nanjo712.github.io/2026/01/13/Hello-World/" title="Hello World">https://nanjo712.github.io/2026/01/13/Hello-World/</a>
+      <a href="https://nanjo712.github.io/openocd-tools-user-manual/" title="OpenOCD-Tools使用文档">https://nanjo712.github.io/openocd-tools-user-manual/</a>
   </li>
   <li class="post-copyright-license">
       <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LXNhLzQuMC9kZWVkLnpo"><i class="fab fa-fw fa-creative-commons"></i>BY-SA</span> 许可协议。转载请注明出处！
@@ -267,19 +313,19 @@
 </div>
 
           <div class="post-tags">
-              <a href="/tags/test/" rel="tag"># test</a>
+              <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" rel="tag"># 嵌入式</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2024/07/28/OpenOCD-Tools%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3/" rel="prev" title="OpenOCD-Tools使用文档">
-                  <i class="fa fa-angle-left"></i> OpenOCD-Tools使用文档
+                <a href="/concise-guide-openocd/" rel="prev" title="OpenOCD简明指南">
+                  <i class="fa fa-angle-left"></i> OpenOCD简明指南
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2026/01/14/Philia093%E4%B9%8B%E8%BF%B7%EF%BC%9A%E5%A5%B9%E5%8E%BB%E5%93%AA%E4%BA%86%EF%BC%9F/" rel="next" title="Philia093之迷：她去哪了？">
+                <a href="/philia093-mystery-where-did-she/" rel="next" title="Philia093之迷：她去哪了？">
                   Philia093之迷：她去哪了？ <i class="fa fa-angle-right"></i>
                 </a>
             </div>
@@ -352,7 +398,7 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"nanjo712","repo":"nanjo712.github.io","client_id":"45901cd932d5b083a38d","client_secret":"cb985b65ede7041c12e8103d7ecbf11e86e8a3ae","admin_user":"nanjo712","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"174e74c20c64e81e943903e59ccb1350"}</script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"nanjo712","repo":"nanjo712.github.io","client_id":"45901cd932d5b083a38d","client_secret":"cb985b65ede7041c12e8103d7ecbf11e86e8a3ae","admin_user":"nanjo712","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"ef8f4d422d455e475c9d2ba9480b115b"}</script>
 <script src="/js/third-party/comments/gitalk.js"></script>
 
 </body>
