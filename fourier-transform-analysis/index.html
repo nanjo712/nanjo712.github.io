@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="Xd1ZA4ab-Pc3vxw9tA-XwbNgPzlcbEf04uPlBFuxsjY">
+  <meta name="msvalidate.01" content="85F14B2E40CFA2173CA80851B11756A1">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic%7CJetBrains+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"nanjo712.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.19.2","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":true,"nav":null,"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="阅读说明 本文不涉及各个应用领域对傅里叶变换的解释，仅将其作为一种特定运算进行分析。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="傅里叶变换解析">
+<meta property="og:url" content="https://nanjo712.github.io/fourier-transform-analysis/index.html">
+<meta property="og:site_name" content="The Vault of woshiren">
+<meta property="og:description" content="阅读说明 本文不涉及各个应用领域对傅里叶变换的解释，仅将其作为一种特定运算进行分析。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-01-13T10:48:01.000Z">
+<meta property="article:modified_time" content="2026-01-16T06:29:46.656Z">
+<meta property="article:author" content="woshiren">
+<meta property="article:tag" content="数学">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://nanjo712.github.io/fourier-transform-analysis/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://nanjo712.github.io/fourier-transform-analysis/","path":"/fourier-transform-analysis/","title":"傅里叶变换解析"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>傅里叶变换解析 | The Vault of woshiren</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">The Vault of woshiren</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">摸鱼是人生第一动力</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%98%85%E8%AF%BB%E8%AF%B4%E6%98%8E"><span class="nav-number">1.</span> <span class="nav-text">阅读说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A6%BB%E6%95%A3%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2"><span class="nav-number">2.</span> <span class="nav-text">离散傅里叶变换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E5%A7%8B%E5%AE%9A%E4%B9%89"><span class="nav-number">2.1.</span> <span class="nav-text">原始定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5%E5%BD%A2%E5%BC%8F"><span class="nav-number">2.2.</span> <span class="nav-text">矩阵形式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90"><span class="nav-number">2.3.</span> <span class="nav-text">复杂度分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#idft"><span class="nav-number">2.4.</span> <span class="nav-text">IDFT</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cooley-tukey%E7%AE%97%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">Cooley-Tukey算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E6%B2%BB%E6%80%9D%E6%83%B3"><span class="nav-number">3.1.</span> <span class="nav-text">分治思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90-1"><span class="nav-number">3.2.</span> <span class="nav-text">复杂度分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#baileys-fft"><span class="nav-number">4.</span> <span class="nav-text">Bailey&#39;s FFT</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%80%9D%E6%83%B3%E4%B8%8E%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90"><span class="nav-number">4.1.</span> <span class="nav-text">算法思想与复杂度分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8F%AA%E5%88%86%E8%A7%A3%E4%B8%80%E6%AC%A1"><span class="nav-number">4.2.</span> <span class="nav-text">为什么只分解一次？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bluestein%E7%AE%97%E6%B3%95"><span class="nav-number">5.</span> <span class="nav-text">Bluestein算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%80%9D%E6%83%B3"><span class="nav-number">5.1.</span> <span class="nav-text">算法思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90-2"><span class="nav-number">5.2.</span> <span class="nav-text">复杂度分析</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="woshiren"
+      src="https://raw.githubusercontent.com/nanjo712/PicGoRepo/master/47129342.png">
+  <p class="site-author-name" itemprop="name">woshiren</p>
+  <div class="site-description" itemprop="description">WSR的金库</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL25hbmpvNzEy" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;nanjo712"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LXNhLzQuMC9kZWVkLnpo"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_sa.svg" alt="Creative Commons"></span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://nanjo712.github.io/fourier-transform-analysis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://raw.githubusercontent.com/nanjo712/PicGoRepo/master/47129342.png">
+      <meta itemprop="name" content="woshiren">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="The Vault of woshiren">
+      <meta itemprop="description" content="WSR的金库">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="傅里叶变换解析 | The Vault of woshiren">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          傅里叶变换解析
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-01-13 18:48:01" itemprop="dateCreated datePublished" datetime="2026-01-13T18:48:01+08:00">2026-01-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-01-16 14:29:46" itemprop="dateModified" datetime="2026-01-16T14:29:46+08:00">2026-01-16</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="阅读说明">阅读说明</h2>
+<p>本文不涉及各个应用领域对傅里叶变换的解释，仅将其作为一种特定运算进行分析。
+<span id="more"></span></p>
+<p>如未经特殊说明，则：</p>
+<ul>
+<li>向量均视为列向量；</li>
+<li>下标始终从<span class="math inline">\(0\)</span>开始。</li>
+</ul>
+<h2 id="离散傅里叶变换">离散傅里叶变换</h2>
+<h3 id="原始定义">原始定义</h3>
+<p>令<span
+class="math inline">\(\vec{x}=(x_0,x_1,...,x_{N-1})\)</span>为长度为<span
+class="math inline">\(N\)</span>的向量，定义向量<span
+class="math inline">\(X\)</span>： <span class="math display">\[
+X_k = \sum_{n=0}^{N-1}x_n\cdot\omega^{nk}_{N}
+\]</span> 其中<span
+class="math inline">\(\omega_N=\mathrm{e}^{-\mathrm{i}\frac{2\pi}{N}}\)</span>，称<span
+class="math inline">\(X\)</span>为<span
+class="math inline">\(x\)</span>的离散傅里叶变换（DFT, Discrete Fourier
+Transform）。</p>
+<h3 id="矩阵形式">矩阵形式</h3>
+<p>令<span class="math inline">\(N\times N\)</span>矩阵<span
+class="math inline">\(W_N=[a_{i,j}]\)</span>，其中<span
+class="math inline">\(a_{i,j}=\omega_N^{ij}\)</span>，则有： <span
+class="math display">\[
+\begin{aligned}
+X=W_N\vec{x}
+\end{aligned}
+\]</span></p>
+<h3 id="复杂度分析">复杂度分析</h3>
+<p>不难看出此时计算DFT的时间复杂度与一个矩阵向量乘法操作相当，即为<span
+class="math inline">\(O(n^2)\)</span>.</p>
+<h3 id="idft">IDFT</h3>
+<p>在纯数学的视角中，一般会在上面提到的DFT定义的等式右侧乘一个系数<span
+class="math inline">\(\frac{1}{\sqrt{N}}\)</span>，此时变换矩阵<span
+class="math inline">\({W&#39;}_N=\frac{W_N}{\sqrt{N}}\)</span>是一个酉矩阵，其逆矩阵等于自身的共轭转置<span
+class="math inline">\({W&#39;}^H\)</span>。</p>
+<p>我们仍然沿用先前的定义，不难得到变换矩阵<span
+class="math inline">\(W_N\)</span>的逆矩阵为<span
+class="math inline">\(\frac{1}{N}W_N^H\)</span>.</p>
+<p>于是我们考察逆离散傅里叶变换，则有 <span class="math display">\[
+\begin{aligned}
+\vec{x}&amp;=\frac{1}{N}W_N^HX\\
+&amp;=\frac{1}{N}\overline{W_N}X\\
+&amp;=\frac{1}{N}\overline{W_N\overline{X}}\\
+&amp;=\frac{1}{N}\overline{\mathrm{DFT(\overline{X})}}
+\end{aligned}
+\]</span> 于是，IDFT问题被归约为了一个DFT问题。</p>
+<h2 id="cooley-tukey算法">Cooley-Tukey算法</h2>
+<h3 id="分治思想">分治思想</h3>
+<p>Cooley-Tukey算法是一种计算离散傅里叶变换的算法，由于其复杂度性质比较优秀，一般也被称作快速傅里叶变换。</p>
+<p>不妨设<span class="math inline">\(N\)</span>为合数，此时有<span
+class="math inline">\(N=N_1\times N_2\)</span>.</p>
+<p>此时有： <span class="math display">\[
+\begin{aligned}
+X_k &amp;= \sum_{n_1=0}^{N-1}x_{n_1}\cdot\omega^{n_1k}_{N}\\
+&amp;= \sum_{n_1=0}^{N_1-1}\sum_{n_2=0}^{N_2-1}x_{n_2N_1 +
+n_1}\cdot\omega_N^{(n_2N_1 +n_1)k}\\
+&amp;= \sum_{n_1=0}^{N_1-1}\omega_N^{n_1k}\sum_{n_2=0}^{N_2-1}x_{n_2N_1
++ n_1}\cdot\omega_N^{n_2N_1k}\\
+\end{aligned}
+\]</span> 令<span class="math inline">\(k=k_1+N_2k_2\)</span>，其中<span
+class="math inline">\(k_1&lt;N_2, k_2&lt;N_1\)</span>则 <span
+class="math display">\[
+\begin{aligned}
+X_{k_1+N_2k_2} &amp;=
+\sum_{n_1=0}^{N_1-1}\omega_N^{n_1(k_1+N_2k_2)}\sum_{n_2=0}^{N_2-1}x_{n_2N_1
++ n_1}\cdot\omega_N^{n_2N_1(k_1+N_2k_2)}\\
+&amp;=
+\sum_{n_1=0}^{N_1-1}\omega_N^{n_1k_1}\omega_{N_1}^{n_1k_2}\sum_{n_2=0}^{N_2-1}x_{n_2N_1
++ n_1}\cdot\omega_{N_2}^{n_2k_1}\\
+\end{aligned}
+\]</span> 记<span
+class="math inline">\(Y(n_1,k_1)=\sum_{n_2=0}^{N_2-1}x_{n_2\cdot N_1 +
+n_1}\cdot\omega_{N_2}^{n_2k_1}\)</span>.</p>
+<p>与DFT定义对比，不难发现这是对向量<span
+class="math inline">\(\vec{x}\)</span>的一部分<span
+class="math inline">\((x_{n_1},x_{N_1+n_1},...,x_{(N_2-1)\cdot N_1
++n_1})\)</span>的<span class="math inline">\(N_2\)</span>点DFT。</p>
+<p>换而言之，即是将向量<span
+class="math inline">\(\vec{x}\)</span>按<span
+class="math inline">\(N_1\)</span>为步长切分为<span
+class="math inline">\(N_1\)</span>个<span
+class="math inline">\(N_2\)</span>长度的子向量并进行DFT.</p>
+<p>现在考虑将<span class="math inline">\(Y(n_1)\)</span>带入，则有 <span
+class="math display">\[
+\begin{aligned}
+X_{k1+N_2k_2}&amp;=\sum_{n_1=0}^{N_1-1}\omega_{N_1}^{n_1k_1}\omega_N^{n_1k_2}Y(n_1,k_1)
+\end{aligned}
+\]</span> 不难注意到此时求和式是一个对<span
+class="math inline">\(\omega^{n_1k_1}_N(Y(0,
+k_1),Y(1,k_1),...,Y(N_1-1,k_1))\)</span>的<span
+class="math inline">\(N_1\)</span>点DFT.</p>
+<p>于是我们可以将大规模的DFT归约为多次规模稍小的DFT，并采用上述公式对子问题进行合并，即可得到原问题的答案。</p>
+<h3 id="复杂度分析-1">复杂度分析</h3>
+<p>不妨令单次DFT问题的时间复杂度记为<span
+class="math inline">\(T_{\mathrm{DFT}}(N)\)</span>，其中<span
+class="math inline">\(N\)</span>为问题规模。</p>
+<p>我们将一个规模为<span
+class="math inline">\(N\)</span>的DFT问题分解为规模分别为<span
+class="math inline">\(N_1\)</span>和<span
+class="math inline">\(N_2\)</span>的DFT问题，其中，规模为<span
+class="math inline">\(N_1\)</span>的DFT问题需要计算<span
+class="math inline">\(N_2\)</span>次，规模为<span
+class="math inline">\(N_2\)</span>的DFT问题需要计算<span
+class="math inline">\(N_1\)</span>次。</p>
+<p>可以得到，算法的总复杂度为<span
+class="math inline">\(T_{\mathrm{DFT}}(N)=N_2\times
+T_{\mathrm{DFT}}(N_1) + N_1 \times
+T_{\mathrm{DFT}}(N_2)+O(N_1)\)</span></p>
+<p>假设<span class="math inline">\(N=2^k\)</span>，取<span
+class="math inline">\(N_1=2\)</span>（此时记作基2的快速傅里叶变换），根据主定理有<span
+class="math inline">\(T_{\mathrm{DFT}}(N)=O(N\log N)\)</span>.</p>
+<h2 id="baileys-fft">Bailey's FFT</h2>
+<h3 id="算法思想与复杂度分析">算法思想与复杂度分析</h3>
+<p>Bailey's
+FFT是Cooley-Tukey算法的变种，是一种对矩阵运算单元友好的傅里叶变换算法。</p>
+<p>不妨设<span class="math inline">\(N=a^2\)</span>，取<span
+class="math inline">\(N_1=N_2=a\)</span>，则有： <span
+class="math display">\[
+\begin{aligned}
+T_{\mathrm{DFT}}(N)&amp;=N_2\times T_{\mathrm{DFT}}(N_1) + N_1 \times
+T_{\mathrm{DFT}}(N_2) + O(N_1)\\
+&amp;=2 a\times T_{\mathrm{DFT}}(a) + O(a)\\
+\end{aligned}
+\]</span> 不对规模为<span
+class="math inline">\(a\)</span>的DFT进行进一步分治，采用DFT的定义直接计算，则有<span
+class="math inline">\(T_{\mathrm{DFT}}(a)=O(N)\)</span>，故<span
+class="math inline">\(T_{\mathrm{DFT}(N)}=O(N^{1.5})\)</span>.</p>
+<p>考虑到<span
+class="math inline">\(N\)</span>一般不是完全平方数，在渐近意义上最优需要取<span
+class="math inline">\(N_1\approx N_2\approx \sqrt{N}\)</span>.</p>
+<p>换而言之，Bailey's
+FFT实际上就是仅执行一次分解的Cooley-Tukey算法。</p>
+<h3 id="为什么只分解一次">为什么只分解一次？</h3>
+<p>很容易注意到，仅分解一次的FFT算法带来的是算法复杂度的退化。那么这样的分解有什么优势呢？</p>
+<p>如果使用基2的FFT算法，会出现步长跨度极大的内存访问，观察下面FFT的分治过程：</p>
+<ul>
+<li><span
+class="math inline">\(\{𝑥0,𝑥1,𝑥2,𝑥3,𝑥4,𝑥5,𝑥6,𝑥7\}\)</span></li>
+<li><span
+class="math inline">\(\{𝑥0,𝑥2,𝑥4,𝑥6\},\{𝑥1,𝑥3,𝑥5,𝑥7\}\)</span></li>
+<li>$ {𝑥0,𝑥4},{𝑥2,𝑥6},{𝑥1,𝑥5},{𝑥3,𝑥7} $</li>
+<li><span
+class="math inline">\(\{𝑥0\},\{𝑥4\},\{𝑥2\},\{𝑥6\},\{𝑥1\},\{𝑥5\},\{𝑥3\},\{𝑥7\}\)</span></li>
+</ul>
+<p>在算法流程从第二层回归第一层时，需要计算4次2点的DFT操作，而每次DFT操作的两份数据的跨度为4。而这只是问题之一，多次的分解涉及大量的数据重排，这也需要大量的内存访问。在问题规模较大时，算法的内存局部性会比较差。</p>
+<p>实践中，我们必须充分考虑现代计算机的性能瓶颈，即内存墙问题。内存墙问题的核心矛盾在于计算单元的增长速度远远超过内存带宽的增长速度，内存访问效率过低会导致计算单元长期处于空置状态。这种步长跨度极大的内存访问，容易造成缓存失效等问题，进一步导致数据供给速率的不足。</p>
+<p>因此，我们需要一种内存局部性比较好的算法，以期望提高计算单元的利用率。</p>
+<p>Bailey's FFT将原始问题分解为<span
+class="math inline">\(N_2\)</span>次<span
+class="math inline">\(N_1\)</span>点的DFT和<span
+class="math inline">\(N_1\)</span>次<span
+class="math inline">\(N_2\)</span>点的DFT，分解次数显著减少，数据搬运和重排的操作会被显著地缩减。代价是计算单元的任务量从<span
+class="math inline">\(O(N\log N)\)</span>显著地增加到了<span
+class="math inline">\(O(N^{1.5})\)</span>.</p>
+<p>如果计算单元是CPU，从这个角度来说，这样的代价是不可接受的。尽管CPU利用率高了，但是复杂度的退化使得计算效率反而下降。</p>
+<p>所以Bailey's
+FFT实际上并不是设计给常见的CPU使用的算法，它适用于具有大量并行计算单元的处理器。并行计算单元具有更高的计算能力，天生适合处理计算密度高的算法。而Bailey's
+FFT正是用时间复杂度退化换取计算密度的一种算法，尽管这显著增加了计算单元的任务量，但是并行化带来的效率提升抵消了这部分代价的增长，加上显著地减少了数据搬运和重排，这使得任务整体的运算速率被提高了。</p>
+<p>具体地，我们可以注意到公式： <span class="math display">\[
+X_{k_1+N_2k_2} =
+\sum_{n_1=0}^{N_1-1}\omega_N^{n_1k_1}\omega_{N_1}^{n_1k_2}\sum_{n_2=0}^{N_2-1}x_{n_2N_1
++ n_1}\cdot\omega_{N_2}^{n_2k_1}\\
+\]</span> 内层<span class="math inline">\(N_1\)</span>次<span
+class="math inline">\(N_2\)</span>点的DFT实际上是相互独立的。</p>
+<p>如果我们将<span class="math inline">\(\vec{x}\)</span>重整为<span
+class="math inline">\(N_1\times N_2\)</span>的矩阵<span
+class="math inline">\(A=[a_{i,j}]\)</span>，其中<span
+class="math inline">\(a_{i,j}=x_{i+jN_1}\)</span>，便可以将内层的DFT操作归约为一个矩阵乘法：
+<span class="math display">\[
+Y=AW_{N_2}
+\]</span> 这可以视作对<span
+class="math inline">\(A\)</span>的行向量作DFT。</p>
+<p>设<span class="math inline">\(N_1 \times N_2\)</span>矩阵<span
+class="math inline">\(T=[t_{i,j}]\)</span>，其中<span
+class="math inline">\(t_{i,j}=\omega_N^{ij}\)</span>，令<span
+class="math inline">\(Y&#39;=Y\odot T\)</span>.</p>
+<p>不妨令最终结果为<span class="math inline">\(N_1\times
+N_2\)</span>矩阵<span
+class="math inline">\(R=[r_{i,j}]\)</span>，其中<span
+class="math inline">\(r_{i,j}=X_{j+N_2i}\)</span>，于是有 <span
+class="math display">\[
+R=W_{N_1}Y&#39;
+\]</span> 我们推导出了矩阵形式的Cooley-Tukey算法，实际上也就是Bailey's
+FFT的核心流程，其关键点在于将核心的DFT操作归约为了两个矩阵乘法。在实践中，我们可以使用矩阵运算单元来完成这一算法中的两个矩阵乘法，使用向量处理单元来实现逐元素相乘，从而完成了对FFT的并行化加速。</p>
+<p>再回到原始问题：为什么只分解一次？</p>
+<p>先前提到Bailey's
+FFT减少了分解次数，确保数据重排的开销更小。而实际上，它被发明出来主要是用于解决大内存跨步的问题。</p>
+<p>讨论之前，我们需要知道一个前提，W矩阵是一个对称矩阵，转置是0开销的。</p>
+<p>假设矩阵在存储系统中以行优先的顺序存储，显然按行读取会非常的高效。但是我们注意到在公式
+<span class="math display">\[
+R=W_{N_1}Y&#39;
+\]</span> 为了计算<span
+class="math inline">\(R\)</span>矩阵的一个元素，我们需要读取<span
+class="math inline">\(Y\)</span>的一列，此时就出现了大内存跨步的问题。</p>
+<p>为了避免这一问题，我们可以将公式变形为 <span class="math display">\[
+R^T=Y&#39;^TW_{N_1}^T
+\]</span> 通过转置操作，可以避免计算过程中出现大的内存跨步。</p>
+<p>故核心在于我们将其归约为矩阵乘法操作，在此基础上利用转置操作来避免大内存跨步的访问。</p>
+<p>但是我们注意到，转置操作也需要大内存跨步访问，应该怎么办呢？由于转置操作具有极好的可预测性和规律性，可以针对这一操作做单独的优化，与具体的体系结构相关。与本文主题无关，不深入讨论。</p>
+<p>于是，我们确保了计算过程中不存在等待内存访问，使得计算单元被尽可能地填满。</p>
+<p>实践中<span class="math inline">\(N_1\)</span>和<span
+class="math inline">\(N_2\)</span>的选取需要具体考察机器的并行数，选择合适的数字以确保尽可能提高运算单元的利用率。</p>
+<h2 id="bluestein算法">Bluestein算法</h2>
+<h3 id="算法思想">算法思想</h3>
+<p>以上讨论的算法建立在<span
+class="math inline">\(N\)</span>是一个可分解的合数的假设上，如果<span
+class="math inline">\(N\)</span>是一个质数，那么显然上述算法会迅速退化成<span
+class="math inline">\(O(N^2)\)</span>的朴素DFT。</p>
+<p>于是我们需要引入一种新的算法——Bluestein算法。</p>
+<p>考虑DFT原始定义： <span class="math display">\[
+X_k = \sum_{n=0}^{N-1}x_n\cdot\omega^{nk}_{N}
+\]</span> 注意到： <span class="math display">\[
+nk=\frac{n^2+k^2-(k-n)^2}{2}
+\]</span> 于是有： <span class="math display">\[
+\begin{aligned}
+\omega_N^{nk}&amp;=\omega_N^{\frac{n^2+k^2-(k-n)^2}{2}}\\
+&amp;=\mathrm{e}^{-\mathrm{i}\frac{\pi}{N}(n^2+k^2-(k-n)^2)}\\
+&amp;=\mathrm{e}^{-\mathrm{i}\frac{n^2\pi}{N}}\mathrm{e}^{-\mathrm{i}\frac{k^2\pi}{N}}\mathrm{e}^{\mathrm{i}\frac{(k-n)^2\pi}{N}}\\
+\end{aligned}
+\]</span> 代入DFT定义有： <span class="math display">\[
+X_k
+=\mathrm{e}^{-\mathrm{i}\frac{k^2\pi}{N}}\sum_{n=0}^{N-1}(x_n\cdot\mathrm{e}^{-\mathrm{i}\frac{n^2\pi}{N}})\mathrm{e}^{\mathrm{i}\frac{(k-n)^2\pi}{N}}
+\]</span> 不妨令<span
+class="math inline">\(A_n=x_n\cdot\mathrm{e}^{-\mathrm{i}\frac{n^2\pi}{N}},
+B_n
+=e^{-\mathrm{i}\frac{n^2\pi}{N}},C_n=\mathrm{e}^{\mathrm{i}\frac{n^2\pi}{N}}\)</span>，则有
+<span class="math display">\[
+X_k =B_k\sum_{n=0}^{N-1}A_nC_{k-n}
+\]</span> <strong>定义1</strong>：对无限长度的序列<span
+class="math inline">\(A\)</span>和序列<span
+class="math inline">\(B\)</span>，有<span
+class="math inline">\(C_n=\sum_{k=-\infty}^{+\infty}A_kB_{n-k}\)</span>，则称<span
+class="math inline">\(C\)</span>为<span
+class="math inline">\(A\)</span>与<span
+class="math inline">\(B\)</span>的<strong>离散线性卷积</strong>，记作<span
+class="math inline">\(C=A\ast B\)</span>.</p>
+<p>我们用 <span class="math inline">\(((n))_N\)</span>
+表示取模运算，即满足 <span class="math inline">\(n = kN + r\)</span> 且
+<span class="math inline">\(0 \le r &lt; N\)</span> 的唯一整数 <span
+class="math inline">\(r\)</span>。</p>
+<p><strong>定义2</strong>：对于长度均为<span
+class="math inline">\(N\)</span>的有限长序列<span
+class="math inline">\(A\)</span>和序列<span
+class="math inline">\(B\)</span>，有<span
+class="math inline">\(C_n=\sum_{k=0}^{N-1}A_kB_{((n-k))_N}\)</span>，则称<span
+class="math inline">\(C\)</span>为<span
+class="math inline">\(A\)</span>与<span
+class="math inline">\(B\)</span>的<strong>循环卷积</strong>，记作<span
+class="math inline">\(C = A\circledast B\)</span>。</p>
+<p><strong>卷积定理</strong>：令<span class="math inline">\(C =
+A\circledast B\)</span>，则有<span
+class="math inline">\(\mathrm{DFT}(C)=\mathrm{DFT}(A)\cdot\mathrm{DFT}(B)\)</span>.</p>
+<p><strong>证明</strong>：</p>
+<p>令<span class="math inline">\(A&#39;=\mathrm{DFT}(A),
+B&#39;=\mathrm{DFT}(B), C&#39;=\mathrm{DFT}(C)\)</span>，于是有： <span
+class="math display">\[
+\begin{aligned}
+{C&#39;}_k&amp;=\sum_{n=0}^{N-1}C_n\omega_N^{nk}\\
+&amp;=\sum_{n=0}^{N-1}\sum_{m=0}^{N-1}A_mB_{((n-m))_N}\omega_N^{nk}\\
+&amp;=\sum_{m=0}^{N-1}A_m\sum_{n=0}^{N-1}B_{((n-m))_N}\omega_N^{nk}\\
+&amp;=\sum_{m=0}^{N-1}A_m\sum_{n=0}^{N-1}B_{n}\omega_N^{(n+m)k}\\
+&amp;=\sum_{m=0}^{N-1}A_m\omega_N^{mk}\sum_{n=0}^{N-1}B_{n}\omega_N^{nk}\\
+&amp;={A&#39;}_k\cdot {B&#39;}_k
+\end{aligned}
+\]</span> 故有<span class="math inline">\(C’=A&#39;\cdot
+B&#39;\)</span>。</p>
+<p>证毕。</p>
+<p>回到公式 <span class="math display">\[
+X_k =B_k\sum_{n=0}^{N-1}A_nC_{k-n}
+\]</span> 注意求和式的形式，如果我们令<span
+class="math inline">\(A_i=0,\forall i\notin [0,N). C_i=0, \forall
+i\notin[-N+1, N-1]\)</span>，则有 <span class="math display">\[
+X_k =B_k\sum_{n=-\infty}^{+\infty}A_nC_{k-n}
+\]</span> 此时公式中的求和式本质上是一个线性卷积。</p>
+<p>卷积定理向我们指出了使用DFT计算循环卷积的可行性，我们需要寻求一种方法将线性卷积转化为循环卷积。</p>
+<p><strong>定理</strong>：</p>
+<p>设 <span class="math inline">\(A\)</span> 和 <span
+class="math inline">\(B\)</span> 为两个有限长序列，其长度分别为 <span
+class="math inline">\(L\)</span> 和 <span
+class="math inline">\(M\)</span>。序列元素 <span
+class="math inline">\(A_n\)</span> 和 <span
+class="math inline">\(B_n\)</span> 分别在 <span class="math inline">\(0
+\le n \le L-1\)</span> 和 <span class="math inline">\(0 \le n \le
+M-1\)</span> 范围内有定义，在定义域外均为 0。</p>
+<p>令序列 <span class="math inline">\(C\)</span> 为 <span
+class="math inline">\(A\)</span> 和 <span
+class="math inline">\(B\)</span> 的线性卷积，即： <span
+class="math display">\[
+C_n = (A * B)_n = \sum_{m=-\infty}^{+\infty} A_m B_{n-m}
+\]</span> 其非零元素的长度为 <span class="math inline">\(P = L + M -
+1\)</span>。</p>
+<p>选定整数 <span class="math inline">\(N\)</span>，使得 <strong><span
+class="math inline">\(N \ge P\)</span></strong>。构造长度为 <span
+class="math inline">\(N\)</span> 的补零序列 <span
+class="math inline">\(A&#39;\)</span> 和 <span
+class="math inline">\(B&#39;\)</span>： <span class="math display">\[
+A&#39;_n = \begin{cases} A_n &amp; 0 \le n &lt; L \\ 0 &amp; L \le n
+&lt; N \end{cases} , \quad B&#39;_n = \begin{cases} B_n &amp; 0 \le n
+&lt; M \\ 0 &amp; M \le n &lt; N \end{cases}
+\]</span> 令序列 <span class="math inline">\(D\)</span> 为 <span
+class="math inline">\(A&#39;\)</span> 和 <span
+class="math inline">\(B&#39;\)</span> 的 <span
+class="math inline">\(N\)</span> 点循环卷积，即： <span
+class="math display">\[
+D_n = (A&#39; \circledast B&#39;)_n = \sum_{m=0}^{N-1} A&#39;_m
+B&#39;_{((n-m))_N}
+\]</span> 对于所有 <span class="math inline">\(0 \le n \le
+N-1\)</span>，有： <span class="math display">\[
+D_n = C_n
+\]</span> 即循环卷积的结果在主值区间内与线性卷积完全相等。</p>
+<p><strong>证明</strong>：</p>
+<p>为了处理循环卷积中的模运算项 <span
+class="math inline">\(B&#39;_{((n-m))_N}\)</span>，我们定义 <span
+class="math inline">\(B\)</span> 的周期延拓序列 <span
+class="math inline">\(\tilde{B}\)</span>，其周期为 <span
+class="math inline">\(N\)</span>： <span class="math display">\[
+\tilde{B}_k = \sum_{r=-\infty}^{+\infty} B_{k - rN}
+\]</span> 在 <span class="math inline">\(0 \le k \le N-1\)</span>
+区间内，<span class="math inline">\(\tilde{B}_k = B&#39;_k =
+B_k\)</span>。</p>
+<p>将此代入循环卷积 <span class="math inline">\(D_n\)</span> 的定义式：
+<span class="math display">\[
+D_n = \sum_{m=0}^{N-1} A&#39;_m \tilde{B}_{n-m}
+\]</span> 由于 <span class="math inline">\(A&#39;_m\)</span> 仅在 <span
+class="math inline">\(0 \le m \le L-1\)</span> 内等于 <span
+class="math inline">\(A_m\)</span>，其余位置为 0，且 <span
+class="math inline">\(L &lt; N\)</span>，我们可以将 <span
+class="math inline">\(A&#39;_m\)</span> 替换为 <span
+class="math inline">\(A_m\)</span>，并将求和范围扩展至 <span
+class="math inline">\((-\infty, +\infty)\)</span> 而不改变结果值： <span
+class="math display">\[
+D_n = \sum_{m=-\infty}^{+\infty} A_m \tilde{B}_{n-m}
+\]</span> 将 <span class="math inline">\(\tilde{B}\)</span>
+的定义代入上式： <span class="math display">\[
+\begin{aligned} D_n &amp;= \sum_{m=-\infty}^{+\infty} A_m \left(
+\sum_{r=-\infty}^{+\infty} B_{n - m - rN} \right) \\ &amp;=
+\sum_{r=-\infty}^{+\infty} \left( \sum_{m=-\infty}^{+\infty} A_m B_{(n -
+rN) - m} \right) \end{aligned}
+\]</span> 观察括号内的求和式 <span class="math inline">\(\sum_{m} A_m
+B_{(n - rN) - m}\)</span>，根据线性卷积的定义，这正是序列 <span
+class="math inline">\(C\)</span> 在索引 <span class="math inline">\(n -
+rN\)</span> 处的值 <span class="math inline">\(C_{n - rN}\)</span>。</p>
+<p>因此，我们得到了公式： <span class="math display">\[
+D_n = \sum_{r=-\infty}^{+\infty} C_{n - rN}
+\]</span> 我们需要证明在 <span class="math inline">\(n \in [0,
+N-1]\)</span> 时，求和式中仅有 <span class="math inline">\(r=0\)</span>
+一项非零。</p>
+<p>由线性卷积性质可知，仅当 <span class="math inline">\(0 \le k \le L +
+M - 2\)</span> 时，<span class="math inline">\(C_k \ne 0\)</span>。</p>
+<p>对不等式<span class="math inline">\(0\leq n-rN\leq
+L+M-2\)</span>，化简得<span class="math inline">\(rN\leq n\leq
+L+M-2+rN\)</span></p>
+<p>显然<span class="math inline">\(r=0\)</span>时，<span
+class="math inline">\(C_{n-rN}\neq0\)</span>.</p>
+<p>考虑不等式左半边，则有<span class="math inline">\(rN\leq
+n\)</span>，在<span
+class="math inline">\(r&gt;0\)</span>时，该不等式不可能成立，故对于<span
+class="math inline">\(r&gt;0\)</span>的情况，<span
+class="math inline">\(C_{n-rN}\)</span>恒等于<span
+class="math inline">\(0\)</span>.</p>
+<p>考虑不等式右半边，则有<span class="math inline">\(n\leq
+L+M-2+rN\)</span>，如要使之不成立，则有<span
+class="math inline">\(n&gt;L+M-2+rN\)</span>始终成立。已知<span
+class="math inline">\(n\geq0\)</span>，故有<span
+class="math inline">\(0&gt;L+M-2+rN\)</span>，此时仅考虑<span
+class="math inline">\(r&lt;0\)</span>的情况，有<span
+class="math inline">\(N&gt;\frac{2-L-M}{r}\)</span>始终成立，代入<span
+class="math inline">\(r=-1\)</span>，有<span
+class="math inline">\(N&gt;L+M-2\)</span>始终成立。</p>
+<p>由于 <span class="math inline">\(N \ge L + M - 1\)</span>，在主值区间
+<span class="math inline">\(0 \le n \le N-1\)</span> 内，所有混叠项
+(<span class="math inline">\(r \ne 0\)</span>) 均为 0。因此<span
+class="math inline">\(D_n = C_n\)</span>.</p>
+<p>证毕。</p>
+<p>回到公式 <span class="math display">\[
+X_k =B_k\sum_{n=-\infty}^{+\infty}A_nC_{k-n}
+\]</span> 注意到求和式中 <span class="math inline">\(C_{k-n}\)</span>
+的下标可能为负（范围为 <span class="math inline">\(-(N-1)\)</span> 到
+<span class="math inline">\(N-1\)</span>）。</p>
+<p>回顾上述定理的证明过程，其本质是将有限长序列进行周期延拓，并在一个充分大的周期
+<span class="math inline">\(M\)</span>（<span class="math inline">\(M
+\ge 2N-1\)</span>）内进行计算以避免混叠。</p>
+<p>根据周期延拓的性质 <span class="math inline">\(C_n = C_{n +
+M}\)</span>，线性卷积所需的负下标数据 <span
+class="math inline">\(C_{-k}\)</span>，在循环卷积的周期性视窗中等价于正下标
+<strong><span class="math inline">\(M-k\)</span></strong>
+处的数据，即令<span class="math inline">\(C_{M-k}=C_{-k}\)</span>。</p>
+<p>因此，我们将 <span class="math inline">\(C_n\)</span>
+中负下标的部分平移映射到数组的尾部。此时，周期延拓后的序列在运算区间内与原线性卷积核完全一致，从而保证了定理的成立。</p>
+<p>值得注意的是，根据上面的定理，延拓的周期长度应满足<span
+class="math inline">\(M\geq
+3N-2\)</span>，然而在本算法的语境下，我们仅需要<span
+class="math inline">\(M\geq2N-1\)</span>.</p>
+<p>假设我们按照上述要求将<span class="math inline">\(A\)</span>和<span
+class="math inline">\(B\)</span>进行延拓，分别记为序列<span
+class="math inline">\(A&#39;\)</span>和<span
+class="math inline">\(B&#39;\)</span>.</p>
+<p>我们注意到 <span class="math display">\[
+\begin{aligned}
+Y_k &amp;=\sum_{n=-\infty}^{+\infty}A_nC_{k-n}\\
+&amp;=\sum_{n=0}^{M-1}A_nC_{((k-n))_N}\\
+&amp;=\sum_{n=0}^{N-1}A_nC_{((k-n))_N}\quad (\forall i\geq N, A_i=0)\\
+\end{aligned}
+\]</span> 不难发现，序列<span
+class="math inline">\(C\)</span>真正对结果产生贡献的索引区间为<span
+class="math inline">\([0,N-1]\)</span>和<span
+class="math inline">\([M-N+1,M-1]\)</span>，只要这两个区间交集为空即可，不难解得<span
+class="math inline">\(M\geq2N-1\)</span></p>
+<p>我们对序列<span class="math inline">\(A\)</span>和序列<span
+class="math inline">\(C\)</span>进行零延拓，确保满足定理条件后，根据卷积定理有：
+<span class="math display">\[
+X=B\cdot\mathrm{IDFT}(\mathrm{DFT}(A)\cdot\mathrm{DFT}(C))
+\]</span> 于是我们可以沿用原本的FFT算法计算任意长度的DFT了。</p>
+<h3 id="复杂度分析-2">复杂度分析</h3>
+<p>显然，由于问题被归约为了三次规模为<span
+class="math inline">\(M\)</span>的DFT操作，其算法复杂度取决于DFT操作的复杂度。</p>
+<p>如果采用Radix-2的FFT算法，那么复杂度为<span
+class="math inline">\(O(n\log n)\)</span>.</p>
+<p>如果采用Bailey's FFT，那么复杂度为<span
+class="math inline">\(O(n^{1.5})\)</span>.</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>woshiren
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://nanjo712.github.io/fourier-transform-analysis/" title="傅里叶变换解析">https://nanjo712.github.io/fourier-transform-analysis/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LXNhLzQuMC9kZWVkLnpo"><i class="fab fa-fw fa-creative-commons"></i>BY-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag"># 数学</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/openocd-tools-user-manual/" rel="prev" title="OpenOCD-Tools使用文档">
+                  <i class="fa fa-angle-left"></i> OpenOCD-Tools使用文档
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/philia093-mystery-where-did-she/" rel="next" title="Philia093之迷：她去哪了？">
+                  Philia093之迷：她去哪了？ <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2024 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">woshiren</span>
+  </div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"nanjo712","repo":"nanjo712.github.io","client_id":"45901cd932d5b083a38d","client_secret":"cb985b65ede7041c12e8103d7ecbf11e86e8a3ae","admin_user":"nanjo712","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"ef99614873f5fa5c24fd1fc1214c3d72"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>
