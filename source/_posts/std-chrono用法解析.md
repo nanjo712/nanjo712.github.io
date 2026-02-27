@@ -1,7 +1,15 @@
 ---
 title: std::chrono用法解析
 date: 2024-01-27 22:41:49
-tags: C/C++
+tags:
+  - CPP
+zhihu-link: https://zhuanlan.zhihu.com/p/680370688
+zhihu-topics: C++
+zhihu-cover: "Hyacine"
+zhihu-title: std::chrono用法解析
+zhihu-updated-at: 2026-01-13 23:49
+permalink: usage-analysis-std-chrono/
+published: true
 ---
 `std::chrono`是C++11引入的一个全新的有关时间处理的库。
 
@@ -70,11 +78,11 @@ int main()
 
 下表给出了一些SI单位制中常用的比例，C++的标准库提供了这些比例的语法糖。
 
-![image-20240126001319598](https://raw.githubusercontent.com/nanjo712/PicGoRepo/master/image-20240126001319598.png)
+{% img https://raw.githubusercontent.com/nanjo712/PicGoRepo/master/image-20240126001319598.png '"" "image-20240126001319598"' %}
 
 基于这份比例表，C++标准库为我们常用的时间单位提供了一些语法糖
 
-![image-20240126002441567](https://raw.githubusercontent.com/nanjo712/PicGoRepo/master/image-20240126002441567.png)
+{% img https://raw.githubusercontent.com/nanjo712/PicGoRepo/master/image-20240126002441567.png '"" "image-20240126002441567"' %}
 
 笔者在这里简单翻译一下图中的文字说明：
 
@@ -230,7 +238,7 @@ std::chrono::system_clock::time_point start(std::chrono::duration<int>(10));
 
 一个例子是：我们可以用`10s`等价代替`std::chrono::seconds(10)`。
 
-![image-20240127222748419](https://raw.githubusercontent.com/nanjo712/PicGoRepo/master/image-20240127222748419.png)
+{% img https://raw.githubusercontent.com/nanjo712/PicGoRepo/master/image-20240127222748419.png '"" "image-20240127222748419"' %}
 
 C++认为`10s`是一个字面量（literal），代表`std::chrono::seconds(10)`，正如一个不带后缀的字面量`10`代表一个int类型的整数10一样。
 
