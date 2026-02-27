@@ -2,13 +2,14 @@
 title: 《常轨脱离Creative》——天使降临我身边
 date: 2024-02-25 23:43:00
 tags: GalGame
+published: true
+permalink: breaking-away-creative-angels-come/
 ---
-
 我对GalGame的接触不多，并不能算是圈子中的资深玩家——没有玩过几部经典的作品，仅有的游玩经验也只有《美少女万华镜》、《恋爱我就借走了》等一些比较有名的作品浅尝辄止的体验。
 
 第一次听说《常轨脱离》是在知乎上的某个回答中，看到了一张妃爱的游戏CG。初看觉得非常惊艳，于是上网搜索了一会，最后在春节Steam打折时入了本作，并且开始了游玩。
 
-既然是为了妃爱而来，自然首先选择了妃爱线。不过，在体验共通线的过程中，我却对娇小可爱的锦明日海产生了兴趣。于是在结束了妃爱线后，我头一次在GalGame中尝试了第二条线路——之前的游玩经验中，不知出于何种原因，我都只推了一条线就没有再玩了。凭借着自己的感觉，很成功地进入了锦明日海的个人线，充实地体验了剧情后，达成了结局”天使降临我身边“。![image-20240225213231159](https://raw.githubusercontent.com/nanjo712/PicGoRepo/master/image-20240225213231159.png)
+既然是为了妃爱而来，自然首先选择了妃爱线。不过，在体验共通线的过程中，我却对娇小可爱的锦明日海产生了兴趣。于是在结束了妃爱线后，我头一次在GalGame中尝试了第二条线路——之前的游玩经验中，不知出于何种原因，我都只推了一条线就没有再玩了。凭借着自己的感觉，很成功地进入了锦明日海的个人线，充实地体验了剧情后，达成了结局”天使降临我身边“。{% img https://raw.githubusercontent.com/nanjo712/PicGoRepo/master/image-20240225213231159.png '"" "image-20240225213231159"' %}
 
 可以说，本线的剧情很好地击穿了我内心的防波堤，也因此我提笔写下这篇文章，记录本人游玩的感想。
 
@@ -32,7 +33,7 @@ tags: GalGame
 
 为了帮助明日海，这一段时间里和泉常常到明日海家中帮忙。在这一过程中，二人的感情迅速升温，最后以明日海的告白开始，二人正式成为恋人。
 
-![忘了截图了，拿一张CG将就看一下](https://raw.githubusercontent.com/nanjo712/PicGoRepo/master/image-20240225214851024.png)
+{% img https://raw.githubusercontent.com/nanjo712/PicGoRepo/master/image-20240225214851024.png '"" "忘了截图了，拿一张CG将就看一下"' %}
 
 在接下来的相处中，明日海不断打开自己内心的防线，逐渐把自己的过去和盘托出。
 
@@ -44,7 +45,7 @@ tags: GalGame
 
 摆脱了音乐家之女锦明日海的身份带来的压力，加上网络为她戴上的面具”雪景四季“，她可以无忧无虑地唱歌了。
 
-![雪景四季](https://raw.githubusercontent.com/nanjo712/PicGoRepo/master/image-20240225222822800.png)
+{% img https://raw.githubusercontent.com/nanjo712/PicGoRepo/master/image-20240225222822800.png '"" "雪景四季"' %}
 
 当然，这只是逃避现实的一种权宜之计。
 
@@ -78,9 +79,9 @@ tags: GalGame
 >
 > ”十分荣幸，大家能来听我唱歌，再次感谢各位！“
 
-![image-20240225225517881](https://raw.githubusercontent.com/nanjo712/PicGoRepo/master/image-20240225225517881.png)
+{% img https://raw.githubusercontent.com/nanjo712/PicGoRepo/master/image-20240225225517881.png '"" "image-20240225225517881"' %}
 
-![image-20240225225718591](https://raw.githubusercontent.com/nanjo712/PicGoRepo/master/image-20240225225718591.png)
+{% img https://raw.githubusercontent.com/nanjo712/PicGoRepo/master/image-20240225225718591.png '"" "image-20240225225718591"' %}
 
 ## 个人感受
 

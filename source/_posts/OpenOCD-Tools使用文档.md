@@ -2,8 +2,14 @@
 title: OpenOCD-Tools使用文档
 date: 2024-07-28 20:38:16
 tags: 嵌入式
+zhihu-title: OpenOCD-Tools使用文档
+zhihu-topics: 嵌入式 OpenOCD
+zhihu-link: https://zhuanlan.zhihu.com/p/711429569
+zhihu-cover: "Evernight"
+zhihu-updated-at: 2026-01-13 21:57
+permalink: openocd-tools-user-manual/
+published: true
 ---
-
 OpenOCD Tools是一个将OpenOCD与VSCode集成的小型插件，封装了OpenOCD的烧录和调试操作。
 
 6.11版本之后的CubeMX引入了对CMake的原生支持，可以直接通过CubeMX直接配置生成CMake工程。
@@ -28,7 +34,7 @@ CMake Tools：为了确保烧录前固件是最新版本，需要调用CMake进�
 
 打开一个STM32CubeMX配置的CMake工程，将激活拓展。
 
-![VSCode-侧边栏](https://raw.githubusercontent.com/nanjo712/PicGoRepo/master/image-20240728211919585.png)
+{% img https://raw.githubusercontent.com/nanjo712/PicGoRepo/master/image-20240728211919585.png '"" "VSCode-侧边栏"' %}
 
 - MCU-Family：从IOC文件中读取的MCU族；
 - Debugger：选择一个Debugger，目前仅有三个选项stlink、cmsis-dap（dap-link）、jlink；
