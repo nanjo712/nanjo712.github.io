@@ -719,8 +719,8 @@ gitalk:
   enable: true
   github_id: nanjo712
   repo: nanjo712.github.io
-  client_id: 45901cd932d5b083a38d
-  client_secret: cb985b65ede7041c12e8103d7ecbf11e86e8a3ae
+  client_id: GITALK_ID
+  client_secret: GITALK_SECRET
   admin_user: nanjo712
   distraction_free_mode: true # Facebook-like distraction free mode
   # When the official proxy is not available, you can change it to your own proxy address
