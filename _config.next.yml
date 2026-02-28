@@ -716,7 +716,7 @@ livere_uid: # <your_uid>
 # Gitalk
 # For more information: https://gitalk.github.io
 gitalk:
-  enable: true
+  enable: false
   github_id: nanjo712
   repo: nanjo712.github.io
   client_id: GITALK_ID
