@@ -13,6 +13,7 @@
         "version": "8.1.1"
     },
     "dependencies": {
+        "dotenv": "^17.3.1",
         "hexo": "^8.1.1",
         "hexo-asset-img": "^1.2.0",
         "hexo-deployer-git": "^4.0.0",
@@ -30,7 +31,6 @@
         "hexo-theme-next": "^8.27.0"
     },
     "devDependencies": {
-        "@aws-sdk/client-s3": "^3.1000.0",
         "https-proxy-agent": "^7.0.6"
     }
 }
