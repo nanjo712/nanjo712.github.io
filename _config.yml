@@ -148,3 +148,12 @@ pandoc:
   pandocPath: 'pandoc'
   timeout: 1000
   args: ["--mathjax"]
+
+# Cloudflare Images 转换
+# 在生成 HTML 时将 R2 图片链接自动替换为 Cloudflare Images 转换链接
+# 源 Markdown 文件保持不变
+cf_image_transform:
+  enable: true
+  enable_dev: false   # hexo server 预览时不转换（本地无法访问 /cdn-cgi/image/）
+  r2_base_url: "https://image.woshiren.com"
+  transform_options: "format=auto,quality=85,metadata=none"

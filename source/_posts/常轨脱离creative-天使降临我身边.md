@@ -9,7 +9,7 @@ permalink: breaking-away-creative-angels-come/
 
 第一次听说《常轨脱离》是在知乎上的某个回答中，看到了一张妃爱的游戏CG。初看觉得非常惊艳，于是上网搜索了一会，最后在春节Steam打折时入了本作，并且开始了游玩。
 
-既然是为了妃爱而来，自然首先选择了妃爱线。不过，在体验共通线的过程中，我却对娇小可爱的锦明日海产生了兴趣。于是在结束了妃爱线后，我头一次在GalGame中尝试了第二条线路——之前的游玩经验中，不知出于何种原因，我都只推了一条线就没有再玩了。凭借着自己的感觉，很成功地进入了锦明日海的个人线，充实地体验了剧情后，达成了结局”天使降临我身边“。{% img https://raw.githubusercontent.com/nanjo712/PicGoRepo/master/image-20240225213231159.png '"" "image-20240225213231159"' %}
+既然是为了妃爱而来，自然首先选择了妃爱线。不过，在体验共通线的过程中，我却对娇小可爱的锦明日海产生了兴趣。于是在结束了妃爱线后，我头一次在GalGame中尝试了第二条线路——之前的游玩经验中，不知出于何种原因，我都只推了一条线就没有再玩了。凭借着自己的感觉，很成功地进入了锦明日海的个人线，充实地体验了剧情后，达成了结局”天使降临我身边“。![image-20240225213231159](https://image.woshiren.com/blog/常轨脱离creative-天使降临我身边/image-20240225213231159.png)
 
 可以说，本线的剧情很好地击穿了我内心的防波堤，也因此我提笔写下这篇文章，记录本人游玩的感想。
 
@@ -33,7 +33,7 @@ permalink: breaking-away-creative-angels-come/
 
 为了帮助明日海，这一段时间里和泉常常到明日海家中帮忙。在这一过程中，二人的感情迅速升温，最后以明日海的告白开始，二人正式成为恋人。
 
-{% img https://raw.githubusercontent.com/nanjo712/PicGoRepo/master/image-20240225214851024.png '"" "忘了截图了，拿一张CG将就看一下"' %}
+![忘了截图了，拿一张CG将就看一下](https://image.woshiren.com/blog/常轨脱离creative-天使降临我身边/image-20240225214851024.png)
 
 在接下来的相处中，明日海不断打开自己内心的防线，逐渐把自己的过去和盘托出。
 
@@ -45,7 +45,7 @@ permalink: breaking-away-creative-angels-come/
 
 摆脱了音乐家之女锦明日海的身份带来的压力，加上网络为她戴上的面具”雪景四季“，她可以无忧无虑地唱歌了。
 
-{% img https://raw.githubusercontent.com/nanjo712/PicGoRepo/master/image-20240225222822800.png '"" "雪景四季"' %}
+![雪景四季](https://image.woshiren.com/blog/常轨脱离creative-天使降临我身边/image-20240225222822800.png)
 
 当然，这只是逃避现实的一种权宜之计。
 
@@ -79,9 +79,9 @@ permalink: breaking-away-creative-angels-come/
 >
 > ”十分荣幸，大家能来听我唱歌，再次感谢各位！“
 
-{% img https://raw.githubusercontent.com/nanjo712/PicGoRepo/master/image-20240225225517881.png '"" "image-20240225225517881"' %}
+![image-20240225225517881](https://image.woshiren.com/blog/常轨脱离creative-天使降临我身边/image-20240225225517881.png)
 
-{% img https://raw.githubusercontent.com/nanjo712/PicGoRepo/master/image-20240225225718591.png '"" "image-20240225225718591"' %}
+![image-20240225225718591](https://image.woshiren.com/blog/常轨脱离creative-天使降临我身边/image-20240225225718591.png)
 
 ## 个人感受
 

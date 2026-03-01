@@ -34,7 +34,7 @@ CMake Tools：为了确保烧录前固件是最新版本，需要调用CMake进�
 
 打开一个STM32CubeMX配置的CMake工程，将激活拓展。
 
-{% img https://raw.githubusercontent.com/nanjo712/PicGoRepo/master/image-20240728211919585.png '"" "VSCode-侧边栏"' %}
+![VSCode-侧边栏](https://image.woshiren.com/blog/openocd-tools使用文档/image-20240728211919585.png)
 
 - MCU-Family：从IOC文件中读取的MCU族；
 - Debugger：选择一个Debugger，目前仅有三个选项stlink、cmsis-dap（dap-link）、jlink；
