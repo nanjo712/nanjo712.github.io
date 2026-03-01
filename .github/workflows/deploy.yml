@@ -1,0 +1,43 @@
+name: Deploy to Cloudflare Pages
+
+on:
+  push:
+    branches:
+      - main   # 当 main 分支有推送时触发，如果你的主分支是 master，请改为 master
+  workflow_dispatch: # 允许手动触发
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: true        # 如果你的主题是 git submodule，则需要此选项
+          fetch-depth: 0          # 获取完整历史，hexo 需要用于 updated_option: mtime
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Pandoc
+        uses: pandoc/actions/setup@v1
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Hexo site
+        run: npx hexo generate
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy public --project-name=pandoc --commit-dirty=true
