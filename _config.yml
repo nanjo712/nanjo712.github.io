@@ -143,3 +143,8 @@ marked:
     nofollow: false
   disableNunjucks: false
   descriptionLists: true
+
+pandoc:
+  pandocPath: 'pandoc'
+  timeout: 1000
+  args: ["--mathjax"]
