@@ -14,8 +14,9 @@ published: true
 ## 主线任务
 
 目前FIRRTL中打印相关的操作会被直接降级到SV Dialect。为了避免非SV后端被迫解析SV后端特有的语义，需要将FIRRTL中打印相关的操作降级到Sim Dialect，在SimToSV的阶段再将Sim Dialect中打印的操作降级为SV，保持FIRRTL -> SV端到端行为不变。
-## Pending PR
 <!--more-->
+
+## Pending PR
 
 - [[FIRRTLToHW] Lower FIRRTL prints to Sim](https://github.com/llvm/circt/pull/10153)
 - [[Sim] Implement the lowering logic from sim.proc.print to the SV dialect](https://github.com/llvm/circt/pull/10172)
