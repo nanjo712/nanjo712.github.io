@@ -1,6 +1,6 @@
 ---
 zhihu-title: CIRCT——打印相关拓展
-zhihu-topics: CIRCT MLIR
+zhihu-topics: CIRCT
 zhihu-link: https://zhuanlan.zhihu.com/p/2027535244069279422
 zhihu-created-at: 2026-04-14 23:54
 zhihu-updated-at: 2026-04-15 00:01
